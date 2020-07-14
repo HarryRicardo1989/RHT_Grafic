@@ -61,7 +61,7 @@ function teste() {
     $.getJSON("/rhtdata", addData);
 
 }
-function teste2() {
+/* function teste2() {
     var DataUmidade = [];
 
     var chart2 = new CanvasJS.Chart("chart2", {
@@ -100,7 +100,7 @@ function teste2() {
     }
     //addData(dadosTeste())
     $.getJSON("/rhtdata", addData);
-}
+} */
 
 setInterval(function () {
     teste()
