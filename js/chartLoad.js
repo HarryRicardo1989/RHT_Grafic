@@ -7,25 +7,25 @@ function teste() {
         animationEnabled: false,
         zoomEnabled: false,
         title: {
-            text: "PCD-Temperatura"
+            text: "PCD-Temperatura/Umidade"
         },
         axisY: {
-            title: "Temperatura",
-            titleFontSize: 24,
+            title: "RHT",
+            titleFontSize: 18,
             includeZero: true
         },
         axisX: {
             intervalType: "hour",
-            valueFormatString: "HH:mm:ss",
+            valueFormatString: "DD/MMM/YY HH:mm:ss",
             labelAngle: -45,
-            //labelMaxWidth: 100 // change label width accordingly
+            labelMaxWidth: 100 // change label width accordingly
 
         },
         data: [{
             name: "teste",
             type: "splineArea",
             color: "rgba(255,0,0,0.7)",
-            yValueFormatString: "0.00 ºC",
+            yValueFormatString: "Temperatura #,## C",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         },
@@ -33,7 +33,7 @@ function teste() {
             name: "teste2",
             type: "splineArea",
             color: "rgba(0,0,255,0.3)",
-            yValueFormatString: "0.00%",
+            yValueFormatString: "Umidade #,##%",
             xValueType: "dateTime",
             dataPoints: DataUmidade
         }
@@ -42,16 +42,16 @@ function teste() {
 
     function addData(json) {
         let data = json["rht"]
+
         for (var i = 0; i < data.length; i++) {
+            let datatime = data[i].timestamp * 1000
             DataTemperatura.push({
-                x: data[i].timestamp,
+                x: datatime,
                 y: data[i].Temperatura,
-                label: data[i].timestamp
             });
             DataUmidade.push({
-                x: data[i].timestamp,
+                x: datatime,
                 y: data[i].Umidade,
-                label: data[i].timestamp
 
             });
         }
@@ -104,5 +104,5 @@ function teste() {
 
 setInterval(function () {
     teste()
-    teste2()
+    //teste2()
 }, 60000)
