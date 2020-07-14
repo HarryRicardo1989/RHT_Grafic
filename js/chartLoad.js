@@ -36,7 +36,7 @@ function teste() {
     var DataUmidade = [];
 
     var chart1 = new CanvasJS.Chart("chart1", {
-        animationEnabled: true,
+        animationEnabled: false,
         zoomEnabled: false,
         title: {
             text: "PCD-Temperatura"
