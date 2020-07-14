@@ -173,7 +173,7 @@
         r = r || [];
         u = u || !1;
         r.push([h, p, D, u]);
-        return h.addEventListener ? (h.addEventListener(p, D, u),
+        /* return h.addEventListener ? (h.addEventListener(p, D, u),
             D) : h.attachEvent ? (r = function (p) {
                 p = p || window.event;
                 p.preventDefault = p.preventDefault || function () {
@@ -188,7 +188,7 @@
             }
                 ,
                 h.attachEvent("on" + p, r),
-                r) : !1
+                r) : !1 */
     }
     function ab(h, p, D) {
         h *= W;
