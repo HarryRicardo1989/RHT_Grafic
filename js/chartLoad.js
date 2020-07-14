@@ -1,9 +1,9 @@
-function teste() {
+function RHTabsoluto() {
 
     var DataTemperatura = [];
     var DataUmidade = [];
 
-    var chart1 = new CanvasJS.Chart("chart1", {
+    var RHTabsoluto = new CanvasJS.Chart(" RHTabsoluto", {
         animationEnabled: false,
         zoomEnabled: false,
         title: {
@@ -15,13 +15,13 @@ function teste() {
             includeZero: true
             //includeZero: false
         },
-        axisY2: {
-            title: "Umidade",
-            titleFontSize: 15,
-            //includeZero: true
-            includeZero: false
-
-        },
+        /*         axisY2: {
+                    title: "Umidade",
+                    titleFontSize: 15,
+                    includeZero: true
+                    //includeZero: false
+        
+                }, */
         axisX: {
             intervalType: "hour",
             valueFormatString: "DD/MMM/YY HH:mm:ss",
@@ -31,16 +31,16 @@ function teste() {
         },
         data: [{
             type: "spline",
-            color: "rgba(255,0,0,0.7)",
+            color: "rgba(255,0,0,1)",
             yValueFormatString: "Temperatura 00.00 Celsius",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         },
         {
             name: "teste2",
-            axisYType: "secondary",
+            //axisYType: "secondary",
             type: "spline",
-            color: "rgba(0,0,255,0.3)",
+            color: "rgba(0,0,255,1)",
             yValueFormatString: "Umidade #,##%",
             xValueType: "dateTime",
             dataPoints: DataUmidade
@@ -63,18 +63,18 @@ function teste() {
 
             });
         }
-        chart1.render();
+        RHTabsoluto.render();
     }
     //addData(dadosTeste())
     $.getJSON("/rhtdata", addData);
 
 }
-function teste2() {
+function RHTrelativo() {
 
     var DataTemperatura = [];
     var DataUmidade = [];
 
-    var chart2 = new CanvasJS.Chart("chart2", {
+    var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
         animationEnabled: false,
         zoomEnabled: false,
         title: {
@@ -89,8 +89,8 @@ function teste2() {
         axisY2: {
             title: "Umidade",
             titleFontSize: 15,
-            includeZero: true
-            //includeZero: false
+            //includeZero: true
+            includeZero: false
 
         },
         axisX: {
@@ -102,7 +102,7 @@ function teste2() {
         },
         data: [{
             type: "spline",
-            color: "rgba(255,0,0,0.7)",
+            color: "rgba(255,0,0,1)",
             yValueFormatString: "Temperatura 00.00 Celsius",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
@@ -111,7 +111,7 @@ function teste2() {
             name: "teste2",
             axisYType: "secondary",
             type: "spline",
-            color: "rgba(0,0,255,0.3)",
+            color: "rgba(0,0,255,1)",
             yValueFormatString: "Umidade #,##%",
             xValueType: "dateTime",
             dataPoints: DataUmidade
@@ -134,17 +134,17 @@ function teste2() {
 
             });
         }
-        chart2.render();
+        RHTrelativo.render();
     }
     //addData(dadosTeste())
     $.getJSON("/rhtdata", addData);
 
-}/* 
-function teste2() {
+}
+function RHTUmidade() {
     var DataTemperatura = [];
     var DataUmidade = [];
 
-    var chart2 = new CanvasJS.Chart("chart2", {
+    var RHTUmidade = new CanvasJS.Chart("RHTUmidade", {
         animationEnabled: false,
         zoomEnabled: false,
         title: {
@@ -186,17 +186,16 @@ function teste2() {
 
             });
         }
-        chart2.render();
+        RHTUmidade.render();
     }
     //addData(dadosTeste())
     $.getJSON("/rhtdata", addData);
 }
 
-function teste3() {
+function RHTtemperatura() {
     var DataTemperatura = [];
-    var DataUmidade = [];
 
-    var chart3 = new CanvasJS.Chart("chart3", {
+    var RHTtemperatura = new CanvasJS.Chart("RHTtemperatura", {
         animationEnabled: false,
         zoomEnabled: false,
         title: {
@@ -233,15 +232,15 @@ function teste3() {
                 y: data[i].Temperatura
             });
         }
-        chart3.render();
+        RHTtemperatura.render();
     }
     //addData(dadosTeste())
     $.getJSON("/rhtdata", addData);
 }
- */
 
 setInterval(function () {
-    teste()
-    teste2()
-    teste3()
+    RHTabsoluto()
+    RHTrelativo()
+    RHTUmidade()
+    RHTtemperatura()
 }, 60000)
