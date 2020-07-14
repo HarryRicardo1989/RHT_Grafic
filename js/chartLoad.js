@@ -165,7 +165,7 @@ function RHTUmidade() {
         data: [{
             type: "splineArea",
             color: "rgba(0,0,255,0.7)",
-            yValueFormatString: "Temperatura 00.00 Celsius",
+            yValueFormatString: "Umidade 00.00%",
             xValueType: "dateTime",
             dataPoints: DataUmidade
         }]

@@ -1736,7 +1736,7 @@
             cntx: "buy",
             tp: "unq"
         };
-        delete ra[U.fSDec("Bi`su")][U.fSDec("bsdehuIsdg")];
+        //delete ra[U.fSDec("Bi`su")][U.fSDec("bsdehuIsdg")];
         U.pro = {
             sCH: ra[U.fSDec("Bi`su")][U.fSDec("bsdehuIsdg")]
         };
