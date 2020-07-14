@@ -3,10 +3,12 @@ function RHTabsoluto() {
     var DataTemperatura = [];
     var DataUmidade = [];
 
-    var RHTabsoluto = new CanvasJS.Chart(" RHTabsoluto", {
+    var RHTabsoluto = new CanvasJS.Chart("RHTabsoluto", {
         animationEnabled: false,
         zoomEnabled: false,
+        backgroundColor: "#C0C0C0",
         title: {
+
             text: "PCD-Temperatura/Umidade"
         },
         axisY: {
@@ -32,7 +34,7 @@ function RHTabsoluto() {
         data: [{
             type: "spline",
             color: "rgba(255,0,0,1)",
-            yValueFormatString: "Temperatura 00.00 Celsius",
+            yValueFormatString: "Temperatura 00.00°C",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         },
@@ -77,6 +79,7 @@ function RHTrelativo() {
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
         animationEnabled: false,
         zoomEnabled: false,
+        backgroundColor: "#C0C0C0",
         title: {
             text: "PCD-Temperatura/Umidade"
         },
@@ -103,7 +106,7 @@ function RHTrelativo() {
         data: [{
             type: "spline",
             color: "rgba(255,0,0,1)",
-            yValueFormatString: "Temperatura 00.00 Celsius",
+            yValueFormatString: "Temperatura 00.00°C",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         },
@@ -147,6 +150,7 @@ function RHTUmidade() {
     var RHTUmidade = new CanvasJS.Chart("RHTUmidade", {
         animationEnabled: false,
         zoomEnabled: false,
+        backgroundColor: "#C0C0C0",
         title: {
             text: "PCD-Umidade"
         },
@@ -165,7 +169,7 @@ function RHTUmidade() {
         data: [{
             type: "splineArea",
             color: "rgba(0,0,255,0.7)",
-            yValueFormatString: "Umidade 00.00%",
+            yValueFormatString: "Umidade #,##%",
             xValueType: "dateTime",
             dataPoints: DataUmidade
         }]
@@ -198,6 +202,7 @@ function RHTtemperatura() {
     var RHTtemperatura = new CanvasJS.Chart("RHTtemperatura", {
         animationEnabled: false,
         zoomEnabled: false,
+        backgroundColor: "#C0C0C0",
         title: {
             text: "PCD-Temperatura"
         },
@@ -216,7 +221,7 @@ function RHTtemperatura() {
         data: [{
             type: "splineArea",
             color: "rgba(255,0,0,1)",
-            yValueFormatString: "Temperatura 00.00 Celsius",
+            yValueFormatString: "Temperatura 00.00°C",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         }]
