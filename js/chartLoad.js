@@ -1,35 +1,3 @@
-function dadosTeste() {
-    list = [
-        {
-            "timestamp": 1475242340,
-            "Temperatura": 20.331,
-            "Umidade": 80.331
-        },
-        {
-            "timestamp": 1475245940,
-            "Temperatura": 40.034,
-            "Umidade": 55.034
-        },
-        {
-            "timestamp": 1475253140,
-            "Temperatura": 12.249,
-            "Umidade": 70.249
-        },
-        {
-            "timestamp": 1475260340,
-            "Temperatura": 30.765,
-            "Umidade": 65.765
-        },
-        {
-            "timestamp": 1475267340,
-            "Temperatura": 31.765,
-            "Umidade": 80.765
-        }
-    ]
-    return list
-}
-
-
 function teste() {
 
     var DataTemperatura = [];
@@ -72,7 +40,8 @@ function teste() {
         ]
     });
 
-    function addData(data) {
+    function addData(json) {
+        let data = json["rht"]
         for (var i = 0; i < data.length; i++) {
             DataTemperatura.push({
                 x: data[i].timestamp,
@@ -88,15 +57,15 @@ function teste() {
         }
         chart1.render();
     }
-    addData(dadosTeste())
-    //$.getJSON("https://canvasjs.com/data/gallery/jsp/total-biomass-energy-consumption.json", addData);
+    //addData(dadosTeste())
+    $.getJSON("/rhtdata", addData);
 
 }
 function teste2() {
     var DataUmidade = [];
 
     var chart2 = new CanvasJS.Chart("chart2", {
-        animationEnabled: true,
+        animationEnabled: false,
         zoomEnabled: false,
         title: {
             text: "PCD=Umidade"
@@ -119,7 +88,8 @@ function teste2() {
         }]
     });
 
-    function addData(data) {
+    function addData(json) {
+        let data = json["rht"]
         for (var i = 0; i < data.length; i++) {
             DataUmidade.push({
                 x: data[i].timestamp,
@@ -128,12 +98,11 @@ function teste2() {
         }
         chart2.render();
     }
-    addData(dadosTeste())
+    //addData(dadosTeste())
+    $.getJSON("/rhtdata", addData);
 }
 
 setInterval(function () {
     teste()
     teste2()
-
-
-}, 30000)
+}, 60000)
