@@ -190,7 +190,7 @@ function RHTUmidade() {
         backgroundColor: "#C0C0C0",
         title: {
 
-            text: "PCD-Temperatura/Umidade",
+            text: "PCD-Umidade",
             //padding: 5
         },
         exportEnabled: true,
@@ -262,7 +262,7 @@ function RHTtemperatura() {
         backgroundColor: "#C0C0C0",
         title: {
 
-            text: "PCD-Temperatura/Umidade",
+            text: "PCD-Temperatura",
         },
         exportEnabled: true,
         legend: {
