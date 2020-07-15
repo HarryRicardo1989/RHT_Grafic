@@ -12,6 +12,7 @@ function RHTabsoluto() {
             text: "PCD-Temperatura/Umidade",
             //padding: 5
         },
+        exportEnabled: true,
         legend: {
             fontSize: 15,
             fontFamily: "tamoha",
@@ -98,6 +99,7 @@ function RHTrelativo() {
             text: "PCD-Temperatura/Umidade",
             //padding: 5
         },
+        exportEnabled: true,
         legend: {
             fontSize: 15,
             fontFamily: "tamoha",
@@ -191,6 +193,7 @@ function RHTUmidade() {
             text: "PCD-Temperatura/Umidade",
             //padding: 5
         },
+        exportEnabled: true,
         legend: {
             fontSize: 15,
             fontFamily: "tamoha",
@@ -261,6 +264,7 @@ function RHTtemperatura() {
 
             text: "PCD-Temperatura/Umidade",
         },
+        exportEnabled: true,
         legend: {
             fontSize: 15,
             fontFamily: "tamoha",
