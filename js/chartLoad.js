@@ -31,7 +31,7 @@ function RHTabsoluto() {
 
         axisX: {
             interval: 30,
-            title: "Hora UTC",
+            title: "Hora LOCAL",
             titleFontSize: 15,
             intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm",
@@ -67,14 +67,15 @@ function RHTabsoluto() {
         let data = json["rht"]
 
         for (var i = 0; i < data.length; i++) {
-            let datatime = data[i].timestamp * 1000
-            let HMS = new Date(datatime).toISOString().slice(0, 19).replace('T', ' ');
+            let localtimestamp = (data[i].timestamp) * 1000
+            let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
+            let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
             DataTemperatura.push({
-                x: datatime,
+                x: datatimeUTC,
                 y: data[i].Temperatura, label: HMS
             });
             DataUmidade.push({
-                x: datatime,
+                x: datatimeUTC,
                 y: data[i].Umidade, label: HMS
 
             });
@@ -124,7 +125,7 @@ function RHTrelativo() {
         },
         axisX: {
             interval: 30,
-            title: "Hora UTC",
+            title: "Hora LOCAL",
             titleFontSize: 15,
             intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm",
@@ -162,14 +163,15 @@ function RHTrelativo() {
         let data = json["rht"]
 
         for (var i = 0; i < data.length; i++) {
-            let datatime = data[i].timestamp * 1000
-            let HMS = new Date(datatime).toISOString().slice(0, 19).replace('T', ' ');
+            let localtimestamp = (data[i].timestamp) * 1000
+            let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
+            let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
             DataTemperatura.push({
-                x: datatime,
+                x: datatimeUTC,
                 y: data[i].Temperatura, label: HMS
             });
             DataUmidade.push({
-                x: datatime,
+                x: datatimeUTC,
                 y: data[i].Umidade, label: HMS
 
             });
@@ -209,7 +211,7 @@ function RHTUmidade() {
         },
         axisX: {
             interval: 30,
-            title: "Hora UTC",
+            title: "Hora LOCAL",
             titleFontSize: 15,
             intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm",
@@ -235,14 +237,11 @@ function RHTUmidade() {
         let data = json["rht"]
 
         for (var i = 0; i < data.length; i++) {
-            let datatime = data[i].timestamp * 1000
-            let HMS = new Date(datatime).toISOString().slice(0, 19).replace('T', ' ');
-            DataTemperatura.push({
-                x: datatime,
-                y: data[i].Temperatura, label: HMS
-            });
+            let localtimestamp = (data[i].timestamp) * 1000
+            let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
+            let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
             DataUmidade.push({
-                x: datatime,
+                x: datatimeUTC,
                 y: data[i].Umidade, label: HMS
 
             });
@@ -282,7 +281,7 @@ function RHTtemperatura() {
         },
         axisX: {
             interval: 30,
-            title: "Hora UTC",
+            title: "Hora LOCAL",
             titleFontSize: 15,
             intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm",
@@ -308,10 +307,11 @@ function RHTtemperatura() {
         let data = json["rht"]
 
         for (var i = 0; i < data.length; i++) {
-            let datatime = data[i].timestamp * 1000
-            let HMS = new Date(datatime).toISOString().slice(0, 19).replace('T', ' ');
+            let localtimestamp = (data[i].timestamp) * 1000
+            let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
+            let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
             DataTemperatura.push({
-                x: datatime,
+                x: datatimeUTC,
                 y: data[i].Temperatura, label: HMS
             });
         }
