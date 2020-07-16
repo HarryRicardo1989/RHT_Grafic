@@ -1,3 +1,4 @@
+const PCD_NAME = "PCD-001"
 function RHTabsoluto() {
 
     var DataTemperatura = [];
@@ -64,7 +65,7 @@ function RHTabsoluto() {
     });
 
     function addData(json) {
-        let data = json["rht"]
+        let data = json["PCD_data"][PCD_NAME];
 
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp) * 1000
@@ -160,7 +161,7 @@ function RHTrelativo() {
     });
 
     function addData(json) {
-        let data = json["rht"]
+        let data = json["PCD_data"][PCD_NAME];
 
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp) * 1000
@@ -234,7 +235,7 @@ function RHTUmidade() {
     });
 
     function addData(json) {
-        let data = json["rht"]
+        let data = json["PCD_data"][PCD_NAME];
 
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp) * 1000
@@ -304,7 +305,7 @@ function RHTtemperatura() {
     });
 
     function addData(json) {
-        let data = json["rht"]
+        let data = json["PCD_data"][PCD_NAME];
 
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp) * 1000
