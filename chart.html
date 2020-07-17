@@ -12,17 +12,21 @@
     </script>
 </head>
 
-<body onload="RHTrelativo(), Pressure()">
+<body onload="RHTrelativo(), Pressure(), realtime()">
     <header class="divtitulo">
         <img class="logo" id="logotipo" src="./img/CSS_logo.svg">
         <div class="titulo">
             <h1 class="titulo-principal">Plataforma De Coleta de Dados</h1>
-            <h2 class="clock" id="clock"></h2>
         </div>
     </header>
     <main>
+        <div class="atual">
+            <h1 class="RHT" id="RHT"></h1>
+            <h1 class="Pressao" id="Pressao"></h1>
+        </div>
         <hr>
         <div class="autoajust">
+
             <div class="block">
                 <div class="graf" id="RHTrelativo"></div>
                 <div class="graf" id="Pressure"></div>

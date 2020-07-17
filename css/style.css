@@ -7,9 +7,8 @@ body{
     padding-bottom: 3.5rem;
     padding-top: 3.5rem;
 }
-div .block {
-    text-align: center;
-}
+
+
 #logotipo{
     height:8vh;
     position:fixed;
@@ -40,7 +39,21 @@ div .block {
 }
 main .autoajust{
     text-align:center;
-    grid-template-columns:repeat(auto-fit,minmax(100px,1fr))
+    grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+}
+
+.atual{
+    padding-top: 5vh;
+}
+.RHT {
+    padding-left: 10vh;
+    padding-right: 10vh;
+    display: inline-block;
+}
+.Pressao {
+    padding-right: 10vh;
+    padding-left: 10vh;
+    display: inline-block;
 }
 div .graf {
     padding: 10px;

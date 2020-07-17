@@ -1,12 +1,32 @@
 const PCD_NAME = "PCD-001"
 
+function realtime() {
+    function atualiza(json) {
+        let data = json["PCD_data"][PCD_NAME];
+        let temperaturaAtual = data[0].Temperatura;
+        let umidadeAtual = data[0].Umidade;
+        let pressaoAtual = data[0].Pressao / 100;
+        stringRHT = `Umidade: ${umidadeAtual}% Temperatura: ${temperaturaAtual} ºC`;
+        stringPressao = `Pressao: ${pressaoAtual}hPa`;
+        const RHTAtual = document.getElementById("RHT");
+        const barometroAtual = document.getElementById("Pressao");
+        RHTAtual.innerHTML = stringRHT;
+        barometroAtual.innerHTML = stringPressao;
+    }
+    $.getJSON("/rhtdata", atualiza);
+}
+
+setInterval(function () {
+    realtime()
+}, 25000)
+
 function RHTrelativo() {
 
     var DataTemperatura = [];
     var DataUmidade = [];
 
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
-        animationEnabled: false,
+        animationEnabled: true,
         zoomEnabled: false,
         backgroundColor: "#C0C0C0",
         title: {
@@ -93,7 +113,10 @@ function RHTrelativo() {
         RHTrelativo.render();
     }
     //addData(dadosTeste())
+
+
     $.getJSON("/rhtdata", addData);
+
 
 }
 
@@ -102,7 +125,7 @@ function Pressure() {
     var DataPressure = [];
 
     var Pressure = new CanvasJS.Chart("Pressure", {
-        animationEnabled: false,
+        animationEnabled: true,
         zoomEnabled: false,
         backgroundColor: "#C0C0C0",
         title: {
@@ -168,6 +191,7 @@ function Pressure() {
     //addData(dadosTeste())
     $.getJSON("/rhtdata", addData);
 }
+
 setInterval(function () {
     RHTrelativo()
     Pressure()
