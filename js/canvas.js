@@ -424,7 +424,7 @@
             borderColor: "black",
             cornerRadius: 0,
             backgroundColor: r ? "transparent" : null,
-            margin: 5,
+            margin: 1,
             wrap: !0,
             maxWidth: null,
             dockInsidePlotArea: !1,
@@ -448,7 +448,7 @@
             borderColor: "black",
             cornerRadius: 0,
             backgroundColor: null,
-            margin: 2,
+            margin: 1,
             wrap: !0,
             maxWidth: null,
             dockInsidePlotArea: !1,
@@ -575,7 +575,7 @@
             gridDashType: "solid",
             interlacedColor: r ? "transparent" : null,
             valueFormatString: null,
-            margin: 2,
+            margin: 1,
             publicProperties: {
                 options: "readWrite",
                 stripLines: "readWrite",
@@ -822,7 +822,7 @@
                 fontColor: fa,
                 fontWeight: "normal",
                 verticalAlign: "top",
-                margin: 5
+                margin: 1
             },
             subtitles: [{
                 fontFamily: Ha,
@@ -830,7 +830,7 @@
                 fontColor: fa,
                 fontWeight: "normal",
                 verticalAlign: "top",
-                margin: 5
+                margin: 1
             }],
             data: [{
                 indexLabelFontFamily: v,
@@ -1037,7 +1037,7 @@
                 fontColor: "#3A3A3A",
                 fontWeight: "bold",
                 verticalAlign: "top",
-                margin: 5
+                margin: 1
             },
             subtitles: [{
                 fontFamily: v,
@@ -1045,7 +1045,7 @@
                 fontColor: "#3A3A3A",
                 fontWeight: "normal",
                 verticalAlign: "top",
-                margin: 5
+                margin: 1
             }],
             data: [{
                 indexLabelFontFamily: v,
@@ -1253,7 +1253,7 @@
             fontColor: fa,
             fontWeight: "normal",
             verticalAlign: "top",
-            margin: 5
+            margin: 1
         },
         subtitles: [{
             fontFamily: Ha,
@@ -1261,7 +1261,7 @@
             fontColor: fa,
             fontWeight: "normal",
             verticalAlign: "top",
-            margin: 5
+            margin: 1
         }],
         toolbar: {
             backgroundColor: "#666666",
@@ -1487,7 +1487,7 @@
                     fontColor: fa,
                     fontWeight: "normal",
                     verticalAlign: "top",
-                    margin: 5
+                    margin: 1
                 },
                 subtitles: [{
                     fontFamily: v,
@@ -1495,7 +1495,7 @@
                     fontColor: fa,
                     fontWeight: "normal",
                     verticalAlign: "top",
-                    margin: 5
+                    margin: 1
                 }],
                 toolbar: {
                     backgroundColor: "#666666",

@@ -23,14 +23,14 @@ function RHTrelativo() {
         },
         axisY: {
             title: "Temperatura",
-            interval: 1,
+            //interval: 1,
             titleFontSize: 15,
             //includeZero: true
             includeZero: false
         },
         axisY2: {
             title: "Umidade",
-            interval: 2,
+            //interval: 2,
             //maximum: 90,
             titleFontSize: 15,
             //includeZero: true
@@ -39,8 +39,8 @@ function RHTrelativo() {
         },
         axisX: {
             interval: 30,
-            title: "Hora LOCAL",
-            titleFontSize: 15,
+            //title: "Hora LOCAL",
+            //titleFontSize: 15,
             intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm",
             labelAngle: -25,
@@ -48,7 +48,7 @@ function RHTrelativo() {
             crosshair: { enabled: true },
             gridDashType: "dot",
             gridThickness: 1,
-            valueFormatString: "HH:mm"
+            valueFormatString: "DD/MMM HH:mm"
         },
         data: [{
             type: "spline",
@@ -126,8 +126,8 @@ function Pressure() {
         },
         axisX: {
             interval: 30,
-            title: "Hora LOCAL",
-            titleFontSize: 15,
+            //title: "Hora LOCAL",
+            //titleFontSize: 15,
             intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm",
             labelAngle: -25,
@@ -135,7 +135,7 @@ function Pressure() {
             crosshair: { enabled: true },
             gridDashType: "dot",
             gridThickness: 1,
-            valueFormatString: "HH:mm"
+            valueFormatString: "DD/MMM HH:mm"
         },
         data: [{
             type: "spline",
