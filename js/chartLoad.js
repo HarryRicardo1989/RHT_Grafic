@@ -22,14 +22,14 @@ function RHTrelativo() {
             verticalAlign: "bottom",  // top, center, bottom
         },
         axisY: {
-            title: "Temperatura",
+            title: "Temperatura (°C)",
             //interval: 1,
             titleFontSize: 15,
             //includeZero: true
             includeZero: false
         },
         axisY2: {
-            title: "Umidade",
+            title: "Umidade (%)",
             //interval: 2,
             //maximum: 90,
             titleFontSize: 15,
@@ -53,7 +53,7 @@ function RHTrelativo() {
         data: [{
             type: "spline",
             showInLegend: true,
-            name: "Temperatura",
+            name: "Temperatura (°C)",
             color: "rgba(255,0,0,1)",
             yValueFormatString: "Temperatura 00.00°C",
             xValueType: "dateTime",
@@ -62,7 +62,7 @@ function RHTrelativo() {
         {
             type: "spline",
             showInLegend: true,
-            name: "Umidade",
+            name: "Umidade (%)",
             axisYType: "secondary",
             type: "spline",
             color: "rgba(0,0,255,1)",
@@ -118,7 +118,7 @@ function Pressure() {
             verticalAlign: "bottom",  // top, center, bottom
         },
         axisY: {
-            title: "Pressao Barometrica",
+            title: "Pressao Barometrica (hPa)",
             //interval: 2,
             titleFontSize: 15,
             //includeZero: true
@@ -140,7 +140,7 @@ function Pressure() {
         data: [{
             type: "spline",
             showInLegend: true,
-            name: "Pressao",
+            name: "Pressao (hPa)",
             color: "rgba(0,0,255,0.7)",
             yValueFormatString: "Pressão 0.00 hPa",
             xValueType: "dateTime",
