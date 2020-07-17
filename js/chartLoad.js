@@ -7,7 +7,7 @@ function realtime() {
         let umidadeAtual = data[0].Umidade;
         let pressaoAtual = data[0].Pressao / 100;
         stringRHT = `Umidade: ${umidadeAtual}% Temperatura: ${temperaturaAtual} ºC`;
-        stringPressao = `Pressao: ${pressaoAtual}hPa`;
+        stringPressao = `Pressão: ${pressaoAtual}hPa`;
         const RHTAtual = document.getElementById("RHT");
         const barometroAtual = document.getElementById("Pressao");
         RHTAtual.innerHTML = stringRHT;
@@ -141,7 +141,7 @@ function Pressure() {
             verticalAlign: "top",  // top, center, bottom
         },
         axisY: {
-            title: "Pressao Barométrica (hPa)",
+            title: "Pressão Barométrica (hPa)",
             //interval: 2,
             titleFontSize: 15,
             //includeZero: true
