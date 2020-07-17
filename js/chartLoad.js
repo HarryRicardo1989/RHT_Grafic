@@ -19,7 +19,7 @@ function RHTrelativo() {
             fontSize: 15,
             fontFamily: "tamoha",
             horizontalAlign: "center", // left, center ,right 
-            verticalAlign: "bottom",  // top, center, bottom
+            verticalAlign: "top",  // top, center, bottom
         },
         axisY: {
             title: "Temperatura (°C)",
@@ -115,7 +115,7 @@ function Pressure() {
             fontSize: 15,
             fontFamily: "tamoha",
             horizontalAlign: "center", // left, center ,right 
-            verticalAlign: "bottom",  // top, center, bottom
+            verticalAlign: "top",  // top, center, bottom
         },
         axisY: {
             title: "Pressao Barometrica (hPa)",

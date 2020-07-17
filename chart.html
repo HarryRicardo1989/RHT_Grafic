@@ -12,11 +12,26 @@
 </head>
 
 <body onload="RHTrelativo(), Pressure()">
-
-    <div class="graf" id="RHTrelativo" style="height: 300px; width: 1200px;"></div>
-    <div class="graf" id="Pressure" style="height: 300px; width: 1200px;"></div>
-    <script src="./js/jquery.js"></script>
-    <script src="./js/canvas.js"></script>
+    <header class="divtitulo">
+        <img class="logo" id="logotipo" src="./img/CSS_logo.svg">
+        <div class="titulo">
+            <h1 class="titulo-principal">Plataforma De Coleta de Dados</h1>
+            <h2 class="clock" id="clock"></h2>
+        </div>
+    </header>
+    <main>
+        <hr>
+        <div class="block">
+            <div class="graf" id="RHTrelativo" style="height: 400px; width: 600px;"></div>
+            <div class="graf" id="Pressure" style="height: 400px; width: 450;"></div>
+        </div>
+        <hr>
+        <script src="./js/jquery.js"></script>
+        <script src="./js/canvas.js"></script>
+    </main>
+    <footer>
+        <p class="copyright">Space Systems &copy; 2020</p>
+    </footer>
 </body>
 
 </html>
