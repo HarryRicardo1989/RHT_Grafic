@@ -107,7 +107,7 @@ function Pressure() {
         backgroundColor: "#C0C0C0",
         title: {
 
-            text: "PCD-Pressao Barometrica",
+            text: "Pressão Barométrica",
             //padding: 5
         },
         exportEnabled: true,
@@ -118,7 +118,7 @@ function Pressure() {
             verticalAlign: "top",  // top, center, bottom
         },
         axisY: {
-            title: "Pressao Barometrica (hPa)",
+            title: "Pressao Barométrica (hPa)",
             //interval: 2,
             titleFontSize: 15,
             //includeZero: true
@@ -140,8 +140,8 @@ function Pressure() {
         data: [{
             type: "spline",
             showInLegend: true,
-            name: "Pressao (hPa)",
-            color: "rgba(0,0,255,0.7)",
+            name: "Pressão (hPa)",
+            color: "rgb(255,150,0)",
             yValueFormatString: "Pressão 0.00 hPa",
             xValueType: "dateTime",
             dataPoints: DataPressure
@@ -169,11 +169,7 @@ function Pressure() {
     $.getJSON("/rhtdata", addData);
 }
 setInterval(function () {
-    RHTabsoluto()
     RHTrelativo()
-    RHTUmidade()
-    Pressure()
-    RHTtemperatura()
     Pressure()
 }, 60000)
 
