@@ -23,7 +23,7 @@ div .block {
     position:fixed;
     top:0;
     width:100%;
-    height:12vh;
+    height:10vh;
     background-color:rgba(0,0,0,.5);
     text-align:center
 }
