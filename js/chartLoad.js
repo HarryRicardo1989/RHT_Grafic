@@ -119,7 +119,7 @@ function Pressure() {
         },
         axisY: {
             title: "Pressao Barometrica",
-            interval: 2,
+            //interval: 2,
             titleFontSize: 15,
             //includeZero: true
             includeZero: false
@@ -142,7 +142,7 @@ function Pressure() {
             showInLegend: true,
             name: "Pressao",
             color: "rgba(0,0,255,0.7)",
-            yValueFormatString: "Pressão 0.0Pa",
+            yValueFormatString: "Pressão 0.00 hPa",
             xValueType: "dateTime",
             dataPoints: DataPressure
         }]
@@ -158,7 +158,7 @@ function Pressure() {
             if (data[i].Pressao != 0) {
                 DataPressure.push({
                     x: datatimeUTC,
-                    y: (data[i].Pressao / 1), label: HMS
+                    y: (data[i].Pressao / 100), label: HMS
 
                 });
             }
