@@ -27,7 +27,7 @@ function RHTrelativo() {
 
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
         animationEnabled: true,
-        zoomEnabled: false,
+        zoomEnabled: true,
         backgroundColor: "#C0C0C0",
         title: {
 
@@ -62,13 +62,13 @@ function RHTrelativo() {
             //title: "Hora LOCAL",
             //titleFontSize: 15,
             intervalType: "minute",
-            valueFormatString: "DD/MMM/YY HH:mm",
+            valueFormatString: "DD/MMM/YY HH:mm:ss",
             labelAngle: -25,
             labelMaxWidth: 100, // change label width accordingly
             crosshair: { enabled: true },
             gridDashType: "dot",
             gridThickness: 1,
-            valueFormatString: "DD/MMM HH:mm"
+            valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
             type: "spline",
@@ -126,7 +126,7 @@ function Pressure() {
 
     var Pressure = new CanvasJS.Chart("Pressure", {
         animationEnabled: true,
-        zoomEnabled: false,
+        zoomEnabled: true,
         backgroundColor: "#C0C0C0",
         title: {
 
@@ -152,13 +152,13 @@ function Pressure() {
             //title: "Hora LOCAL",
             //titleFontSize: 15,
             intervalType: "minute",
-            valueFormatString: "DD/MMM/YY HH:mm",
+            valueFormatString: "DD/MMM/YY HH:mm:ss",
             labelAngle: -25,
             labelMaxWidth: 100, // change label width accordingly
             crosshair: { enabled: true },
             gridDashType: "dot",
             gridThickness: 1,
-            valueFormatString: "DD/MMM HH:mm"
+            valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
             type: "spline",
