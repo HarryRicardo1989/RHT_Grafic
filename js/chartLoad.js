@@ -1,14 +1,13 @@
 const PCD_NAME = "PCD-001"
 
-
 realtime = function () {
     function atualiza(json) {
         let data = json["PCD_data"][PCD_NAME];
         let temperaturaAtual = data[0].Temperatura;
         let umidadeAtual = data[0].Umidade;
         let pressaoAtual = data[0].Pressao / 100;
-        stringRHT = `Umidade: ${umidadeAtual}% Temperatura: ${temperaturaAtual} ºC`;
-        stringPressao = `Pressão: ${pressaoAtual}hPa`;
+        stringRHT = `Umidade: ${umidadeAtual} % Temperatura: ${temperaturaAtual} ºC`;
+        stringPressao = `Pressão: ${pressaoAtual} hPa`;
         const RHTAtual = document.getElementById("RHT");
         const barometroAtual = document.getElementById("Pressao");
         RHTAtual.innerHTML = stringRHT;
@@ -19,12 +18,13 @@ realtime = function () {
 
 setInterval(function () {
     realtime()
-}, 5000)
+}, 10000)
 
 
 
 
 var PCD = function () {
+
     var DataTemperatura = [];
     var DataUmidade = [];
     var DataPressure = [];
@@ -148,11 +148,12 @@ var PCD = function () {
 
 
 
-
     var update = function (json) {
+        DataTemperatura.length = 0;
+        DataUmidade.length = 0;
+        DataPressure.length = 0;
 
-        console.log(json);
-        let data = json["PCD_data"][PCD_NAME];
+        let data = json.PCD_data[PCD_NAME];
 
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp) * 1000
@@ -172,19 +173,17 @@ var PCD = function () {
                 y: (data[i].Pressao / 100), label: HMS
 
             });
-            RHTrelativo.render();
-            Pressure.render();
         }
-
-    }
-
-    $.getJSON("/rhtdata", update);
-    setInterval(function () {
-        $.getJSON("/rhtdata", update);
         RHTrelativo.render();
         Pressure.render();
+
+    }
+    //************auto-update*****************/
+    callUpdate = function () {
+        $.getJSON("/rhtdata", update);
+    }
+    callUpdate()
+    setInterval(function () {
+        callUpdate()
     }, 1000)
 }
-
-
-
