@@ -1,26 +1,16 @@
 const PCD_NAME = "PCD-001"
 
-realtime = function () {
-    function atualiza(json) {
-        let data = json["PCD_data"][PCD_NAME];
-        let temperaturaAtual = data[0].Temperatura;
-        let umidadeAtual = data[0].Umidade;
-        let pressaoAtual = data[0].Pressao / 100;
-        stringRHT = `Umidade: ${umidadeAtual} % Temperatura: ${temperaturaAtual} ºC`;
-        stringPressao = `Pressão: ${pressaoAtual} hPa`;
-        const RHTAtual = document.getElementById("RHT");
-        const barometroAtual = document.getElementById("Pressao");
-        RHTAtual.innerHTML = stringRHT;
-        barometroAtual.innerHTML = stringPressao;
-    }
-    $.getJSON("/rhtdata", atualiza);
+ultima_amostra = function (data) {
+    let temperaturaAtual = data[0].Temperatura;
+    let umidadeAtual = data[0].Umidade;
+    let pressaoAtual = data[0].Pressao / 100;
+    stringRHT = `Umidade: ${umidadeAtual} % Temperatura: ${temperaturaAtual} ºC`;
+    stringPressao = `Pressão: ${pressaoAtual} hPa`;
+    const RHTAtual = document.getElementById("RHT");
+    const barometroAtual = document.getElementById("Pressao");
+    RHTAtual.innerHTML = stringRHT;
+    barometroAtual.innerHTML = stringPressao;
 }
-
-setInterval(function () {
-    realtime()
-}, 10000)
-
-
 
 
 var PCD = function () {
@@ -152,9 +142,8 @@ var PCD = function () {
         DataTemperatura.length = 0;
         DataUmidade.length = 0;
         DataPressure.length = 0;
-
         let data = json.PCD_data[PCD_NAME];
-
+        ultima_amostra(data);
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp) * 1000
             let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
@@ -185,5 +174,6 @@ var PCD = function () {
     callUpdate()
     setInterval(function () {
         callUpdate()
-    }, 1000)
+
+    }, 10000)
 }
