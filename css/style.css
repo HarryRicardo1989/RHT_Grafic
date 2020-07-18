@@ -16,8 +16,9 @@ body{
     left:0;
     display:inline-block;
     padding-right:4vh;
-    padding-left:12vh
+    padding-left:6vh
 }
+
 .divtitulo{
     position:fixed;
     top:0;
@@ -33,9 +34,13 @@ body{
     padding:1em;
     color:rgba(255,255,255,.7)
 }
+.titulo-portatil{
+    display: none;
+}
 .titulo h1{
-    font-size:5vh;
+    font-size:4vh;
     text-align:center
+
 }
 main .autoajust{
     text-align:center;
@@ -46,20 +51,21 @@ main .autoajust{
     padding-top: 5vh;
 }
 .RHT {
-    padding-left: 10vh;
-    padding-right: 10vh;
+    padding-right: 1vh;
+    padding-left: 1vh;
     display: inline-block;
 }
 .Pressao {
-    padding-right: 10vh;
-    padding-left: 10vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
     display: inline-block;
 }
 div .graf {
     padding: 10px;
     display: inline-block;
     height: 400px; 
-    width: 700px;
+    width: 30vmin;
+    width: 45vmax;
 }
 hr {
     border-top: 1px solid #727273;
@@ -80,3 +86,21 @@ footer{
     font-size:.9em;
     margin: 8px
 }
+
+@media screen and (max-width: 800px) {
+    .divtitulo{
+            text-align:right
+    
+    }
+
+  }
+
+  @media screen and (max-width: 65em) {
+    
+    .titulo-portatil{
+        display: inline;
+    }
+
+    .titulo-principal{
+        display: none;
+    }
