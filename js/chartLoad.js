@@ -1,6 +1,7 @@
 const PCD_NAME = "PCD-001"
 
-function realtime() {
+
+realtime = function () {
     function atualiza(json) {
         let data = json["PCD_data"][PCD_NAME];
         let temperaturaAtual = data[0].Temperatura;
@@ -18,15 +19,18 @@ function realtime() {
 
 setInterval(function () {
     realtime()
-}, 25000)
+}, 5000)
 
-function RHTrelativo() {
 
+
+
+var PCD = function () {
     var DataTemperatura = [];
     var DataUmidade = [];
+    var DataPressure = [];
 
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
-        animationEnabled: true,
+        animationEnabled: false,
         zoomEnabled: true,
         backgroundColor: "#C0C0C0",
         title: {
@@ -93,39 +97,10 @@ function RHTrelativo() {
         ]
     });
 
-    function addData(json) {
-        let data = json["PCD_data"][PCD_NAME];
 
-        for (var i = 0; i < data.length; i++) {
-            let localtimestamp = (data[i].timestamp) * 1000
-            let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
-            let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
-            DataTemperatura.push({
-                x: datatimeUTC,
-                y: data[i].Temperatura, label: HMS
-            });
-            DataUmidade.push({
-                x: datatimeUTC,
-                y: data[i].Umidade, label: HMS
-
-            });
-        }
-        RHTrelativo.render();
-    }
-    //addData(dadosTeste())
-
-
-    $.getJSON("/rhtdata", addData);
-
-
-}
-
-
-function Pressure() {
-    var DataPressure = [];
 
     var Pressure = new CanvasJS.Chart("Pressure", {
-        animationEnabled: true,
+        animationEnabled: false,
         zoomEnabled: true,
         backgroundColor: "#C0C0C0",
         title: {
@@ -171,28 +146,45 @@ function Pressure() {
         }]
     });
 
-    function addData(json) {
+
+
+
+    var update = function (json) {
+
+        console.log(json);
         let data = json["PCD_data"][PCD_NAME];
 
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp) * 1000
             let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
             let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
-            if (data[i].Pressao != 0) {
-                DataPressure.push({
-                    x: datatimeUTC,
-                    y: (data[i].Pressao / 100), label: HMS
+            DataTemperatura.push({
+                x: datatimeUTC,
+                y: data[i].Temperatura, label: HMS
+            });
+            DataUmidade.push({
+                x: datatimeUTC,
+                y: data[i].Umidade, label: HMS
 
-                });
-            }
+            });
+            DataPressure.push({
+                x: datatimeUTC,
+                y: (data[i].Pressao / 100), label: HMS
+
+            });
+            RHTrelativo.render();
+            Pressure.render();
         }
-        Pressure.render();
+
     }
-    //addData(dadosTeste())
-    $.getJSON("/rhtdata", addData);
+
+    $.getJSON("/rhtdata", update);
+    setInterval(function () {
+        $.getJSON("/rhtdata", update);
+        RHTrelativo.render();
+        Pressure.render();
+    }, 1000)
 }
 
-setInterval(function () {
-    RHTrelativo()
-    Pressure()
-}, 60000)
+
+
