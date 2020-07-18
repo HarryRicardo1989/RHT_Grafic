@@ -87,16 +87,11 @@ footer{
     margin: 8px
 }
 
-@media screen and (max-width: 800px) {
-    .divtitulo{
-            text-align:right
-    
+@media screen and (max-width: 55em) {
+
+    #logotipo{
+        height:5vh;
     }
-
-  }
-
-  @media screen and (max-width: 65em) {
-    
     .titulo-portatil{
         display: inline;
     }
@@ -104,3 +99,11 @@ footer{
     .titulo-principal{
         display: none;
     }
+
+  }
+
+  @media screen and (max-width: 65em) {
+    #logotipo{
+        height:5vh;
+    }
+  }
