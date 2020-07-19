@@ -2,18 +2,24 @@
 <html>
 
 <head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./img/favicon.svg" type="image/x-icon">
     <title>PCD Graphic</title>
-    <script src="./js/chartLoad.js">
+    <script src="./js/teste.js">
 
     </script>
 </head>
 
-<body onload="PCD()">
+
+<body>
     <header class="divtitulo">
         <img class="logo" id="logotipo" src="./img/CSS_logo.svg">
         <div class="titulo">
@@ -22,6 +28,11 @@
         </div>
     </header>
     <main>
+
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+        </figure>
+
         <div class="atual">
             <hr>
             <h1 class="RHT" id="RHT"></h1>
@@ -38,8 +49,6 @@
         </div>
 
         <hr>
-        <script src="./js/jquery.js"></script>
-        <script src="./js/canvas.js"></script>
     </main>
     <footer>
         <p class="copyright">Space Systems &copy; 2020</p>
