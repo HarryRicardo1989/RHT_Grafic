@@ -51,14 +51,31 @@ main .autoajust{
     padding-top: 5vh;
 }
 .RHT {
+    font-size:2vh;
     padding-right: 1vh;
-    padding-left: 1vh;
+    padding-left: 2vh;
     display: inline-block;
 }
 .Pressao {
+    font-size:2vh;
     padding-left: 1vh;
-    padding-right: 1vh;
+    padding-right: 2vh;
     display: inline-block;
+}
+.Probabilidade{
+    font-size:2vh;
+    padding-top: 10px;
+    padding-left: 20vh;
+    padding-right: 2vh;
+}
+.Verde{
+    color: green;
+}
+.Azul{
+    color: blue;
+}
+.Aqua{
+    color: aqua;
 }
 div .graf {
     padding: 10px;

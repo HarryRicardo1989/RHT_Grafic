@@ -3,13 +3,24 @@ const PCD_NAME = "PCD-001"
 ultima_amostra = function (data) {
     let temperaturaAtual = data[0].Temperatura;
     let umidadeAtual = data[0].Umidade;
-    let pressaoAtual = data[0].Pressao / 100;
-    stringRHT = `Umidade: ${umidadeAtual} % Temperatura: ${temperaturaAtual} ºC`;
-    stringPressao = `Pressão: ${pressaoAtual} hPa`;
+    let pressaoAtual = (data[0].Pressao / 100);
+    let pressao_mmHg = pressaoAtual / 1.333;
+    stringRHT = `Umidade: <span class="Verde">${umidadeAtual} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual} ºC</span>`;
+    stringPressao = `Pressão: <span class="Verde">${pressaoAtual} mmHg (${pressao_mmHg.toFixed(3)} mmHg)</span>`;
+    let probabilidade = ''
+    if (pressao_mmHg > 760 && umidadeAtual < 70) {
+        probabilidade = `<span class="Verde">"Nao Chover"</span>`
+    } else if (pressao_mmHg < 740 && umidadeAtual > 60) {
+        probabilidade = `<span class="Azul">"Vai Chover"</span>`
+    } else {
+        probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
+    }
     const RHTAtual = document.getElementById("RHT");
     const barometroAtual = document.getElementById("Pressao");
+    const Probabilidade = document.getElementById("Probabilidade");
     RHTAtual.innerHTML = stringRHT;
     barometroAtual.innerHTML = stringPressao;
+    Probabilidade.innerHTML = `Previsão de ${probabilidade} nas proximas Horas</span>`;
 }
 
 
