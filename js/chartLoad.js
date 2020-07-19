@@ -11,7 +11,7 @@ ultima_amostra = function (data) {
     if (pressao_mmHg > 760 && umidadeAtual < 70) {
         probabilidade = `<span class="Verde">"Nao Chover"</span>`
     } else if (pressao_mmHg < 740 && umidadeAtual > 60) {
-        probabilidade = `<span class="Azul">"Vai Chover"</span>`
+        probabilidade = `<span class="Azul">"Chuva"</span>`
     } else {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
     }
@@ -20,7 +20,7 @@ ultima_amostra = function (data) {
     const Probabilidade = document.getElementById("Probabilidade");
     RHTAtual.innerHTML = stringRHT;
     barometroAtual.innerHTML = stringPressao;
-    Probabilidade.innerHTML = `Previsão de ${probabilidade} nas proximas Horas</span>`;
+    Probabilidade.innerHTML = `Previsão de ${probabilidade} nas proximas Horas (Ribeirão Preto)</span>`;
 }
 
 
