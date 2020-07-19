@@ -1,10 +1,11 @@
 const PCD_NAME = "PCD-001"
+const Pa_to_mmHg = 0.0075006157593005
 
 ultima_amostra = function (data) {
     let temperaturaAtual = data[0].Temperatura;
     let umidadeAtual = data[0].Umidade;
-    let pressaoAtual = (data[0].Pressao / 100);
-    let pressao_mmHg = pressaoAtual / 1.333;
+    let pressaoAtual = (data[0].Pressao / 100);// convert Pa to hPa
+    let pressao_mmHg = (data[0].Pressao * Pa_to_mmHg); //convert Pa to mmHg
     stringRHT = `Umidade: <span class="Verde">${umidadeAtual} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual} ºC</span>`;
     stringPressao = `Pressão: <span class="Verde">${pressaoAtual} hPa (${pressao_mmHg.toFixed(3)} mmHg)</span>`;
     let probabilidade = ''
@@ -29,7 +30,7 @@ var PCD = function () {
     var DataTemperatura = [];
     var DataUmidade = [];
     var DataPressure = [];
-
+    var Data_mmHg = [];
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
         animationEnabled: false,
         zoomEnabled: true,
@@ -123,6 +124,15 @@ var PCD = function () {
             //includeZero: true
             includeZero: false
         },
+        axisY2: {
+            title: "Pressão Barométrica (mmHg)",
+            interval: 2,
+            //maximum: 90,
+            titleFontSize: 15,
+            //includeZero: true
+            includeZero: false
+
+        },
         axisX: {
             //interval: 30,
             //title: "Hora LOCAL",
@@ -144,6 +154,15 @@ var PCD = function () {
             yValueFormatString: "Pressão 0.00 hPa",
             xValueType: "dateTime",
             dataPoints: DataPressure
+        }, {
+            type: "spline",
+            showInLegend: true,
+            name: "Pressão (mmHg)",
+            color: "rgb(50,100,150)",
+            axisYType: "secondary",
+            yValueFormatString: "Pressão 0.00 mmHg",
+            xValueType: "dateTime",
+            dataPoints: Data_mmHg
         }]
     });
 
@@ -153,6 +172,7 @@ var PCD = function () {
         DataTemperatura.length = 0;
         DataUmidade.length = 0;
         DataPressure.length = 0;
+        Data_mmHg.length = 0;
         let data = json.PCD_data[PCD_NAME];
         ultima_amostra(data);
         for (var i = 0; i < data.length; i++) {
@@ -171,6 +191,11 @@ var PCD = function () {
             DataPressure.push({
                 x: datatimeUTC,
                 y: (data[i].Pressao / 100), label: HMS
+
+            });
+            Data_mmHg.push({
+                x: datatimeUTC,
+                y: (data[i].Pressao * Pa_to_mmHg), label: HMS
 
             });
         }
