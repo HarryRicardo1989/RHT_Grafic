@@ -6,7 +6,7 @@ ultima_amostra = function (data) {
     let pressaoAtual = (data[0].Pressao / 100);
     let pressao_mmHg = pressaoAtual / 1.333;
     stringRHT = `Umidade: <span class="Verde">${umidadeAtual} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual} ºC</span>`;
-    stringPressao = `Pressão: <span class="Verde">${pressaoAtual} mmHg (${pressao_mmHg.toFixed(3)} mmHg)</span>`;
+    stringPressao = `Pressão: <span class="Verde">${pressaoAtual} hPa (${pressao_mmHg.toFixed(3)} mmHg)</span>`;
     let probabilidade = ''
     if (pressao_mmHg > 760 && umidadeAtual < 70) {
         probabilidade = `<span class="Verde">"Nao Chover"</span>`
