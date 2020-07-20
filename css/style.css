@@ -60,12 +60,14 @@ main .autoajust{
     font-size:2.5vh;
     padding-right: 1vh;
     padding-left: 2vh;
+    color: darkgrey;
     display: inline-block;
 }
 .Pressao {
     font-size:2.5vh;
     padding-left: 2vh;
     padding-right: 2vh;
+    color: darkgrey;
     display: inline-block;
 }
 .Probabilidade{
@@ -73,6 +75,7 @@ main .autoajust{
     padding-top: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
+    color: darkgrey;
 }
 
 .Verde{

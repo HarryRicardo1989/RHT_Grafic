@@ -5,14 +5,15 @@ ultima_amostra = function (data) {
     let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
     let temperaturaAtual = data[0].Temperatura;
     let umidadeAtual = data[0].Umidade;
+    let Altitude = data[0].Altitude
     let pressaoAtual = (data[0].Pressao / 100);// convert Pa to hPa
     let pressao_mmHg = (data[0].Pressao * Pa_to_mmHg); //convert Pa to mmHg
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao = `Pressão: <span class="Verde">${pressaoAtual} hPa (${pressao_mmHg.toFixed(3)} mmHg)</span>`;
     let probabilidade = ''
-    if (pressao_mmHg > 760 && umidadeAtual < 70) {
+    if (pressao_mmHg > 760.0 && umidadeAtual < 70) {
         probabilidade = `<span class="Verde">"Não Chover"</span>`
-    } else if (pressao_mmHg < 740 && umidadeAtual > 60) {
+    } else if (pressao_mmHg < 740.0 && umidadeAtual > 60) {
         probabilidade = `<span class="Azul">"Chuva"</span>`
     } else {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
