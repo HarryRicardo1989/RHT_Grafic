@@ -49,8 +49,9 @@ var PCD = function () {
         },
         axisY: {
             title: "Temperatura (°C)",
-            labelAngle: -45,
+            //labelAngle: -45,
             titleFontSize: 15,
+            labelFontSize: 10,
             valueFormatString: "0.0",
             includeZero: false,
             //interval: 1,
@@ -58,8 +59,9 @@ var PCD = function () {
         },
         axisY2: {
             title: "Umidade (%)",
-            labelAngle: -45,
+            //labelAngle: -45,
             titleFontSize: 15,
+            labelFontSize: 10,
             valueFormatString: "0.0",
             includeZero: false,
             //interval: 2,
@@ -73,30 +75,31 @@ var PCD = function () {
             //titleFontSize: 15,
             //intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm:ss",
-            labelAngle: -25,
-            labelMaxWidth: 100, // change label width accordingly
+            labelAngle: -45,
+            labelFontSize: 12,
+            labelMaxWidth: 50, // change label width accordingly
             crosshair: { enabled: true },
             gridDashType: "dot",
             gridThickness: 1,
             valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
-            type: "splineArea",
+            type: "spline",
             showInLegend: true,
             name: "Temperatura (°C)",
-            lineColor: "rgba(255,0,0,0.3)",
-            color: "rgba(255,0,0,0.5)",
+            //lineColor: "rgba(255,0,0,1)",
+            color: "rgba(255,0,0,1)",
             yValueFormatString: "Temperatura 00.00°C",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         },
         {
+            type: "spline",
             showInLegend: true,
             name: "Umidade (%)",
             axisYType: "secondary",
-            type: "splineArea",
-            lineColor: "rgba(0,0,255,0.3)",
-            color: "rgba(0,0,255,0.5)",
+            //lineColor: "rgba(0,0,255,1)",
+            color: "rgba(0,0,255,1)",
             yValueFormatString: "Umidade #,##%",
             xValueType: "dateTime",
             dataPoints: DataUmidade
@@ -123,19 +126,21 @@ var PCD = function () {
         },
         axisY: {
             title: "Pressão Barométrica (hPa)",
-            titleFontSize: 10,
+            titleFontSize: 15,
             includeZero: false,
+            labelFontSize: 10,
             valueFormatString: "0.0",
-            labelAngle: -45,
+            //labelAngle: -45,
             //interval: 0.5,
             //includeZero: true
         },
         axisY2: {
             title: "Pressão Barométrica (mmHg)",
-            titleFontSize: 10,
+            titleFontSize: 15,
             includeZero: false,
+            labelFontSize: 10,
             valueFormatString: "0.0",
-            labelAngle: -45,
+            //labelAngle: -45,
             //interval: 0.5,
             //includeZero: true
 
@@ -146,28 +151,29 @@ var PCD = function () {
             //titleFontSize: 15,
             //intervalType: "minute",
             valueFormatString: "DD/MMM/YY HH:mm:ss",
-            labelAngle: -25,
-            labelMaxWidth: 100, // change label width accordingly
+            labelAngle: -45,
+            labelFontSize: 12,
+            labelMaxWidth: 50, // change label width accordingly
             crosshair: { enabled: true },
             gridDashType: "dot",
             gridThickness: 1,
             valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
-            type: "splineArea",
+            type: "spline",
             showInLegend: true,
             name: "Pressão (hPa)",
-            lineColor: "rgba(255,150,50,0.3)",
-            color: "rgba(255,150,0,0.5)",
+            //lineColor: "rgba(255,150,50,0.3)",
+            color: "rgba(255,150,0,1)",
             yValueFormatString: "Pressão 0.00 hPa",
             xValueType: "dateTime",
             dataPoints: DataPressure
         }, {
-            type: "splineArea",
+            type: "spline",
             showInLegend: true,
             name: "Pressão (mmHg)",
-            lineColor: "rgba(50,150,150,0.3)",
-            color: "rgba(50,100,150,0.5)",
+            //lineColor: "rgba(50,150,150,0.3)",
+            color: "rgba(50,100,150,1)",
             axisYType: "secondary",
             yValueFormatString: "Pressão 0.00 mmHg",
             xValueType: "dateTime",
