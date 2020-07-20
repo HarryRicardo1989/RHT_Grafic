@@ -31,7 +31,7 @@ body{
     display:inline-block;
     height:3vh;
     line-height:5vh;
-    color:rgba(255,255,255,.7)
+    color: darkgrey;
 }
 .titulo-portatil{
     display: none;
