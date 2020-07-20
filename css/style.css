@@ -76,7 +76,14 @@ main .autoajust{
     padding-left: 2vh;
     padding-right: 2vh;
     color: darkgrey;
-    display: inline-block;
+    display: block;
+}
+.Pressao1 {
+    font-size:2.5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    color: darkgrey;
+    display: block;
 }
 .Probabilidade{
     font-size:2.5vh;

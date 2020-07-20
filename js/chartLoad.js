@@ -5,24 +5,28 @@ ultima_amostra = function (data) {
     let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
     let temperaturaAtual = data[0].Temperatura;
     let umidadeAtual = data[0].Umidade;
-    let Altitude = data[0].Altitude
-    let pressaoAtual = (data[0].Pressao / 100);// convert Pa to hPa
-    let pressao_mmHg = (data[0].Pressao * Pa_to_mmHg); //convert Pa to mmHg
+    let Altitude = data[0].Altitude;
+    let pressao = (data[0].Pressao / 100);
+    let sea_level_press = (data[0].Sea_level / 100);// convert Pa to hPa
+    let pressao_mmHg = (data[0].Sea_level * Pa_to_mmHg); //convert Pa to mmHg
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
-    stringPressao = `Pressão: <span class="Verde">${pressaoAtual} hPa (${pressao_mmHg.toFixed(3)} mmHg)</span>`;
+    stringPressao1 = `Pressão a Nível do Mar: <span class="Verde">${sea_level_press} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
+    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao} hPa (${(pressao * Pa_to_mmHg).toFixed(3)} mmHg) </span> Altitude: <span class="Verde">${Altitude}m</span>`;
     let probabilidade = ''
     if (pressao_mmHg > 760.0 && umidadeAtual < 70) {
         probabilidade = `<span class="Verde">"Não Chover"</span>`
-    } else if (pressao_mmHg < 740.0 && umidadeAtual > 60) {
+    } else if (pressao_mmHg < 750.0 && umidadeAtual > 60) {
         probabilidade = `<span class="Azul">"Chuva"</span>`
     } else {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
     }
     const RHTAtual = document.getElementById("RHT");
-    const barometroAtual = document.getElementById("Pressao");
+    const Pressao_nivel_mar = document.getElementById("Pressao");
+    const Pressao_Atual = document.getElementById("Pressao1");
     const Probabilidade = document.getElementById("Probabilidade");
     RHTAtual.innerHTML = stringRHT;
-    barometroAtual.innerHTML = stringPressao;
+    Pressao_nivel_mar.innerHTML = stringPressao1;
+    Pressao_Atual.innerHTML = stringPressao2;
     Probabilidade.innerHTML = `Previsão de ${probabilidade} nas próximas Horas (Ribeirão Preto)`;
 }
 
@@ -83,6 +87,7 @@ var PCD = function () {
             //interval: 2,
             //maximum: 90,
             //includeZero: true,
+
 
         },
         axisX: {
@@ -156,6 +161,23 @@ var PCD = function () {
             includeZero: false,
             labelFontSize: 10,
             valueFormatString: "0.0",
+            stripLines: [
+                {
+                    startValue: 760,
+                    endValue: 790,
+                    color: "rgba(100,0,0,0.1)"
+                },
+                {
+                    startValue: 740,
+                    endValue: 760,
+                    color: "rgba(139,69,19,0.1)"
+                },
+                {
+                    startValue: 710,
+                    endValue: 740,
+                    color: "rgba(0,0,255,0.1)"
+                },
+            ]
             //labelAngle: -45,
             //interval: 0.5,
             //includeZero: true
@@ -219,16 +241,18 @@ var PCD = function () {
                 y: data[i].Umidade, label: HMS
 
             });
-            DataPressure.push({
-                x: datatimeUTC,
-                y: (data[i].Pressao / 100), label: HMS
+            if (data[i].Sea_level > 0) {
+                DataPressure.push({
+                    x: datatimeUTC,
+                    y: (data[i].Sea_level / 100), label: HMS
 
-            });
-            Data_mmHg.push({
-                x: datatimeUTC,
-                y: (data[i].Pressao * Pa_to_mmHg), label: HMS
+                });
+                Data_mmHg.push({
+                    x: datatimeUTC,
+                    y: (data[i].Sea_level * Pa_to_mmHg), label: HMS
 
-            });
+                });
+            }
         }
         RHTrelativo.render();
         Pressure.render();
