@@ -74,6 +74,23 @@ var PCD = function () {
             labelFontSize: 10,
             valueFormatString: "0.0",
             includeZero: false,
+            stripLines: [
+                {
+                    value: 22,
+                    showOnTop: true,
+                    color: "rgba(0,0,255,1)"
+                },
+                {
+                    value: 24,
+                    showOnTop: 26,
+                    color: "rgba(0,255,0,1)"
+                },
+                {
+                    value: 26,
+                    showOnTop: 40,
+                    color: "rgba(255,0,0,1)"
+                },
+            ]
             //interval: 1,
             //includeZero: true,
         },
@@ -164,18 +181,18 @@ var PCD = function () {
             stripLines: [
                 {
                     startValue: 760,
-                    endValue: 790,
-                    color: "rgba(100,0,0,0.1)"
+                    endValue: 800,
+                    color: "rgba(139,20,19,0.05)"
                 },
                 {
                     startValue: 740,
                     endValue: 760,
-                    color: "rgba(139,69,19,0.1)"
+                    color: "rgba(140,140,140,0.05)"
                 },
                 {
-                    startValue: 710,
+                    startValue: 700,
                     endValue: 740,
-                    color: "rgba(0,0,255,0.1)"
+                    color: "rgba(0,0,255,0.05)"
                 },
             ]
             //labelAngle: -45,
