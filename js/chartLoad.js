@@ -49,18 +49,22 @@ var PCD = function () {
         },
         axisY: {
             title: "Temperatura (°C)",
-            //interval: 1,
+            labelAngle: -45,
             titleFontSize: 15,
-            //includeZero: true
-            includeZero: false
+            valueFormatString: "0.0",
+            includeZero: false,
+            //interval: 1,
+            //includeZero: true,
         },
         axisY2: {
             title: "Umidade (%)",
+            labelAngle: -45,
+            titleFontSize: 15,
+            valueFormatString: "0.0",
+            includeZero: false,
             //interval: 2,
             //maximum: 90,
-            titleFontSize: 15,
-            //includeZero: true
-            includeZero: false
+            //includeZero: true,
 
         },
         axisX: {
@@ -77,21 +81,22 @@ var PCD = function () {
             valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
-            type: "spline",
+            type: "splineArea",
             showInLegend: true,
             name: "Temperatura (°C)",
-            color: "rgba(255,0,0,1)",
+            lineColor: "rgba(255,0,0,0.3)",
+            color: "rgba(255,0,0,0.5)",
             yValueFormatString: "Temperatura 00.00°C",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         },
         {
-            type: "spline",
             showInLegend: true,
             name: "Umidade (%)",
             axisYType: "secondary",
-            type: "spline",
-            color: "rgba(0,0,255,1)",
+            type: "splineArea",
+            lineColor: "rgba(0,0,255,0.3)",
+            color: "rgba(0,0,255,0.5)",
             yValueFormatString: "Umidade #,##%",
             xValueType: "dateTime",
             dataPoints: DataUmidade
@@ -108,7 +113,6 @@ var PCD = function () {
         title: {
 
             text: "Pressão Barométrica",
-            //padding: 5
         },
         exportEnabled: true,
         legend: {
@@ -119,18 +123,21 @@ var PCD = function () {
         },
         axisY: {
             title: "Pressão Barométrica (hPa)",
-            //interval: 2,
-            titleFontSize: 15,
+            titleFontSize: 10,
+            includeZero: false,
+            valueFormatString: "0.0",
+            labelAngle: -45,
+            //interval: 0.5,
             //includeZero: true
-            includeZero: false
         },
         axisY2: {
             title: "Pressão Barométrica (mmHg)",
-            interval: 2,
-            //maximum: 90,
-            titleFontSize: 15,
+            titleFontSize: 10,
+            includeZero: false,
+            valueFormatString: "0.0",
+            labelAngle: -45,
+            //interval: 0.5,
             //includeZero: true
-            includeZero: false
 
         },
         axisX: {
@@ -147,18 +154,20 @@ var PCD = function () {
             valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
-            type: "spline",
+            type: "splineArea",
             showInLegend: true,
             name: "Pressão (hPa)",
-            color: "rgb(255,150,0)",
+            lineColor: "rgba(255,150,50,0.3)",
+            color: "rgba(255,150,0,0.5)",
             yValueFormatString: "Pressão 0.00 hPa",
             xValueType: "dateTime",
             dataPoints: DataPressure
         }, {
-            type: "spline",
+            type: "splineArea",
             showInLegend: true,
             name: "Pressão (mmHg)",
-            color: "rgb(50,100,150)",
+            lineColor: "rgba(50,150,150,0.3)",
+            color: "rgba(50,100,150,0.5)",
             axisYType: "secondary",
             yValueFormatString: "Pressão 0.00 mmHg",
             xValueType: "dateTime",
