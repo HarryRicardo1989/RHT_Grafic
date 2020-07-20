@@ -74,6 +74,11 @@ var PCD = function () {
             labelFontSize: 10,
             valueFormatString: "0.0",
             includeZero: false,
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
             stripLines: [
                 {
                     value: 22,
@@ -101,6 +106,11 @@ var PCD = function () {
             labelFontSize: 10,
             valueFormatString: "0.0",
             includeZero: false,
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
             //interval: 2,
             //maximum: 90,
             //includeZero: true,
@@ -168,6 +178,11 @@ var PCD = function () {
             includeZero: false,
             labelFontSize: 10,
             valueFormatString: "0.0",
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
             //labelAngle: -45,
             //interval: 0.5,
             //includeZero: true
@@ -178,6 +193,11 @@ var PCD = function () {
             includeZero: false,
             labelFontSize: 10,
             valueFormatString: "0.0",
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
             stripLines: [
                 {
                     startValue: 760,
