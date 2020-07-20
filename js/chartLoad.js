@@ -38,7 +38,7 @@ var PCD = function () {
         title: {
 
             text: "PCD-Temperatura/Umidade",
-            //padding: 5
+            //paddingLeft: 5
         },
         exportEnabled: true,
         legend: {
