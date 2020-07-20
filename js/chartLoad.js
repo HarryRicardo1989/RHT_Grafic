@@ -6,7 +6,7 @@ ultima_amostra = function (data) {
     let umidadeAtual = data[0].Umidade;
     let pressaoAtual = (data[0].Pressao / 100);// convert Pa to hPa
     let pressao_mmHg = (data[0].Pressao * Pa_to_mmHg); //convert Pa to mmHg
-    stringRHT = `Umidade: <span class="Verde">${umidadeAtual} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual} ºC</span>`;
+    stringRHT = `Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao = `Pressão: <span class="Verde">${pressaoAtual} hPa (${pressao_mmHg.toFixed(3)} mmHg)</span>`;
     let probabilidade = ''
     if (pressao_mmHg > 760 && umidadeAtual < 70) {
