@@ -103,13 +103,13 @@ main .autoajust{
     color: aqua;
 }
 div .graf {
-    padding: 10px;
+    padding-left: 10px;
     display: block;
     /*display: inline-block;*/
-    height: 430px; 
+    height: 400px; 
     width: 30vmin;
     /*width: 47vmax;*/
-    width: auto;
+    width: 97.5%;
 }
 
 hr {
