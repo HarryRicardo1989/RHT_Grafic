@@ -1,6 +1,9 @@
 const PCD_NAME = "PCD-001"
 const Pa_to_mmHg = 0.0075006157593005
-
+const lineThickness = 0.7
+const lineType = "line"
+const labelFontSize = 10
+const backgroundColor = "#C0C0C0"
 ultima_amostra = function (data) {
     let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
     let temperaturaAtual = data[0].Temperatura;
@@ -10,8 +13,8 @@ ultima_amostra = function (data) {
     let sea_level_press = (data[0].Sea_level / 100);// convert Pa to hPa
     let pressao_mmHg = (data[0].Sea_level * Pa_to_mmHg); //convert Pa to mmHg
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
-    stringPressao1 = `Pressão a Nível do Mar: <span class="Verde">${sea_level_press} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
-    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altitude: <span class="Verde">${Altitude}m</span>`;
+    stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
+    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude}m</span>`;
     let probabilidade = ''
     if (pressao_mmHg > 760.0 && umidadeAtual < 70) {
         probabilidade = `<span class="Verde">"Não Chover"</span>`
@@ -54,7 +57,7 @@ var PCD = function () {
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
         animationEnabled: false,
         zoomEnabled: true,
-        backgroundColor: "#C0C0C0",
+        backgroundColor: backgroundColor,
         title: {
 
             text: "PCD-Temperatura/Umidade",
@@ -71,13 +74,15 @@ var PCD = function () {
             title: "Temperatura (°C)",
             //labelAngle: -45,
             titleFontSize: 15,
-            labelFontSize: 10,
+            labelFontSize: labelFontSize,
             valueFormatString: "0.0",
             includeZero: false,
             crosshair: {
                 enabled: true, //disable here
                 snapToDataPoint: true,
-                valueFormatString: "##.0"
+                valueFormatString: "##.0",
+                lineThickness: lineThickness,
+
             },
             stripLines: [
                 {
@@ -103,14 +108,15 @@ var PCD = function () {
             title: "Umidade (%)",
             //labelAngle: -45,
             titleFontSize: 15,
-            labelFontSize: 10,
+            labelFontSize: labelFontSize,
             //reversed: true,
             valueFormatString: "0.0",
             includeZero: false,
             crosshair: {
                 enabled: true, //disable here
                 snapToDataPoint: true,
-                valueFormatString: "##.0"
+                valueFormatString: "##.0",
+                lineThickness: lineThickness,
             },
             //interval: 2,
             //maximum: 90,
@@ -133,7 +139,8 @@ var PCD = function () {
             valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
-            type: "spline",
+            type: lineType,
+            lineThickness: lineThickness,
             showInLegend: true,
             name: "Temperatura (°C)",
             //lineColor: "rgba(255,0,0,1)",
@@ -143,8 +150,9 @@ var PCD = function () {
             dataPoints: DataTemperatura
         },
         {
-            type: "spline",
+            type: lineType,
             showInLegend: true,
+            lineThickness: lineThickness,
             name: "Umidade (%)",
             axisYType: "secondary",
             //lineColor: "rgba(0,0,255,1)",
@@ -161,7 +169,7 @@ var PCD = function () {
     var Pressure = new CanvasJS.Chart("Pressure", {
         animationEnabled: false,
         zoomEnabled: true,
-        backgroundColor: "#C0C0C0",
+        backgroundColor: backgroundColor,
         title: {
 
             text: "Pressão Barométrica",
@@ -177,7 +185,7 @@ var PCD = function () {
             title: "Pressão Barométrica (hPa)",
             titleFontSize: 15,
             includeZero: false,
-            labelFontSize: 10,
+            labelFontSize: labelFontSize,
             valueFormatString: "0.0",
             crosshair: {
                 enabled: true, //disable here
@@ -193,7 +201,7 @@ var PCD = function () {
             titleFontSize: 15,
             //reversed: true,
             includeZero: false,
-            labelFontSize: 10,
+            labelFontSize: labelFontSize,
             valueFormatString: "0.0",
             crosshair: {
                 enabled: true, //disable here
@@ -237,20 +245,22 @@ var PCD = function () {
             valueFormatString: "DD/MMM HH:mm:ss"
         },
         data: [{
-            type: "spline",
+            type: lineType,
             showInLegend: true,
+            lineThickness: lineThickness,
             name: "Pressão (hPa)",
             //lineColor: "rgba(255,150,50,0.3)",
-            color: "rgba(255,150,0,1)",
+            color: "rgb(255,150,0)",
             yValueFormatString: "Pressão 0.00 hPa",
             xValueType: "dateTime",
             dataPoints: DataPressure
         }, {
-            type: "spline",
+            type: lineType,
             showInLegend: true,
+            lineThickness: lineThickness,
             name: "Pressão (mmHg)",
             //lineColor: "rgba(50,150,150,0.3)",
-            color: "rgba(50,100,150,1)",
+            color: "rgb(50,100,150)",
             axisYType: "secondary",
             yValueFormatString: "Pressão 0.00 mmHg",
             xValueType: "dateTime",
