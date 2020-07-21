@@ -4,6 +4,7 @@ const lineThickness = 0.7
 const lineType = "line"
 const labelFontSize = 10
 const backgroundColor = "#C0C0C0"
+
 ultima_amostra = function (data) {
     let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
     let temperaturaAtual = data[0].Temperatura;
