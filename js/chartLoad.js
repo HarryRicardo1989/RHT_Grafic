@@ -11,7 +11,7 @@ ultima_amostra = function (data) {
     let pressao_mmHg = (data[0].Sea_level * Pa_to_mmHg); //convert Pa to mmHg
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao1 = `Pressão a Nível do Mar: <span class="Verde">${sea_level_press} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
-    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao} hPa (${(pressao * Pa_to_mmHg).toFixed(3)} mmHg) </span> Altitude: <span class="Verde">${Altitude}m</span>`;
+    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altitude: <span class="Verde">${Altitude}m</span>`;
     let probabilidade = ''
     if (pressao_mmHg > 760.0 && umidadeAtual < 70) {
         probabilidade = `<span class="Verde">"Não Chover"</span>`
@@ -104,6 +104,7 @@ var PCD = function () {
             //labelAngle: -45,
             titleFontSize: 15,
             labelFontSize: 10,
+            //reversed: true,
             valueFormatString: "0.0",
             includeZero: false,
             crosshair: {
@@ -190,6 +191,7 @@ var PCD = function () {
         axisY2: {
             title: "Pressão Barométrica (mmHg)",
             titleFontSize: 15,
+            //reversed: true,
             includeZero: false,
             labelFontSize: 10,
             valueFormatString: "0.0",
@@ -289,6 +291,7 @@ var PCD = function () {
                     y: (data[i].Sea_level * Pa_to_mmHg), label: HMS
 
                 });
+
             }
         }
         RHTrelativo.render();
