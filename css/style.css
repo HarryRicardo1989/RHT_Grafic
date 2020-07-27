@@ -85,6 +85,13 @@ main .autoajust{
     color: darkgrey;
     display: block;
 }
+.Dew_point{
+    font-size:2.5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    color: darkgrey;
+    display: block;
+}
 .Probabilidade{
     font-size:2.5vh;
     padding-top: 10px;

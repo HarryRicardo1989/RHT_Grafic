@@ -13,9 +13,11 @@ ultima_amostra = function (data) {
     let pressao = (data[0].Pressao / 100);
     let sea_level_press = (data[0].Sea_level / 100);// convert Pa to hPa
     let pressao_mmHg = (data[0].Sea_level * Pa_to_mmHg); //convert Pa to mmHg
+    let pontoDeOrvalho = data[0].Dew_point
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
-    stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
-    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude}m</span>`;
+    stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
+    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
+    stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
     let probabilidade = ''
     if (pressao_mmHg > 760.0 && umidadeAtual < 70) {
         probabilidade = `<span class="Verde">"Não Chover"</span>`
@@ -27,10 +29,12 @@ ultima_amostra = function (data) {
     const RHTAtual = document.getElementById("RHT");
     const Pressao_nivel_mar = document.getElementById("Pressao");
     const Pressao_Atual = document.getElementById("Pressao1");
+    const ponto_orvalhoT = document.getElementById("Dew_point");
     const Probabilidade = document.getElementById("Probabilidade");
     RHTAtual.innerHTML = stringRHT;
     Pressao_nivel_mar.innerHTML = stringPressao1;
     Pressao_Atual.innerHTML = stringPressao2;
+    ponto_orvalhoT.innerHTML = stringDewPoint;
     Probabilidade.innerHTML = `Previsão de ${probabilidade} nas próximas Horas (Ribeirão Preto)`;
 }
 
@@ -314,6 +318,7 @@ var PCD = function () {
         $.getJSON("/rhtdata", update);
     }
     callUpdate()
+
     setInterval(function () {
         callUpdate()
 
