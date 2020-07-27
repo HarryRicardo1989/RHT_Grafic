@@ -59,6 +59,7 @@ var PCD = function () {
     var DataUmidade = [];
     var DataPressure = [];
     var Data_mmHg = [];
+    var DataDew_point = [];
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
         animationEnabled: false,
         zoomEnabled: true,
@@ -147,6 +148,7 @@ var PCD = function () {
             type: lineType,
             lineThickness: lineThickness,
             showInLegend: true,
+            markerType: "none",
             name: "Temperatura (°C)",
             //lineColor: "rgba(255,0,0,1)",
             color: "rgba(255,0,0,1)",
@@ -156,7 +158,20 @@ var PCD = function () {
         },
         {
             type: lineType,
+            lineThickness: lineThickness,
+            markerType: "none",
             showInLegend: true,
+            name: "Ponto de Orvalho (°C)",
+            //lineColor: "rgba(255,0,0,1)",
+            color: "rgba(0,255,150,1)",
+            yValueFormatString: "Ponto de Orvalho 00.00°C",
+            xValueType: "dateTime",
+            dataPoints: DataDew_point
+        },
+        {
+            type: lineType,
+            showInLegend: true,
+            markerType: "none",
             lineThickness: lineThickness,
             name: "Umidade (%)",
             axisYType: "secondary",
@@ -252,6 +267,7 @@ var PCD = function () {
         data: [{
             type: lineType,
             showInLegend: true,
+            markerType: "none",
             lineThickness: lineThickness,
             name: "Pressão (hPa)",
             //lineColor: "rgba(255,150,50,0.3)",
@@ -262,6 +278,7 @@ var PCD = function () {
         }, {
             type: lineType,
             showInLegend: true,
+            markerType: "none",
             lineThickness: lineThickness,
             name: "Pressão (mmHg)",
             //lineColor: "rgba(50,150,150,0.3)",
@@ -280,6 +297,7 @@ var PCD = function () {
         DataUmidade.length = 0;
         DataPressure.length = 0;
         Data_mmHg.length = 0;
+        DataDew_point.length = 0;
         let data = json.PCD_data[PCD_NAME];
         ultima_amostra(data);
         for (var i = 0; i < data.length; i++) {
@@ -295,6 +313,13 @@ var PCD = function () {
                 y: data[i].Umidade, label: HMS
 
             });
+            if (data[i].Dew_point > 0) {
+                DataDew_point.push({
+                    x: datatimeUTC,
+                    y: (data[i].Dew_point), label: HMS
+
+                });
+            }
             if (data[i].Sea_level > 0) {
                 DataPressure.push({
                     x: datatimeUTC,
@@ -306,6 +331,7 @@ var PCD = function () {
                     y: (data[i].Sea_level * Pa_to_mmHg), label: HMS
 
                 });
+
 
             }
         }
