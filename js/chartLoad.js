@@ -1,6 +1,6 @@
 const PCD_NAME = "PCD-001"
 const Pa_to_mmHg = 0.0075006157593005
-const lineThickness = 0.7
+const lineThickness = 0.9
 const lineType = "line"
 const labelFontSize = 10
 const backgroundColor = "#C0C0C0"
