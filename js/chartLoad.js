@@ -152,7 +152,7 @@ var PCD = function () {
             name: "Temperatura (°C)",
             //lineColor: "rgba(255,0,0,1)",
             color: "rgba(255,0,0,1)",
-            yValueFormatString: "Temperatura 00.00°C",
+            yValueFormatString: "Temperatura 00.000°C",
             xValueType: "dateTime",
             dataPoints: DataTemperatura
         },
@@ -164,7 +164,7 @@ var PCD = function () {
             name: "Ponto de Orvalho (°C)",
             //lineColor: "rgba(255,0,0,1)",
             color: "rgba(0,255,150,1)",
-            yValueFormatString: "Ponto de Orvalho 00.00°C",
+            yValueFormatString: "Ponto de Orvalho 00.000°C",
             xValueType: "dateTime",
             dataPoints: DataDew_point
         },
@@ -320,20 +320,20 @@ var PCD = function () {
 
                 });
             }
-            if (data[i].Sea_level > 0) {
-                DataPressure.push({
-                    x: datatimeUTC,
-                    y: (data[i].Sea_level / 100), label: HMS
 
-                });
-                Data_mmHg.push({
-                    x: datatimeUTC,
-                    y: (data[i].Sea_level * Pa_to_mmHg), label: HMS
+            DataPressure.push({
+                x: datatimeUTC,
+                y: (data[i].Sea_level / 100), label: HMS
 
-                });
+            });
+            Data_mmHg.push({
+                x: datatimeUTC,
+                y: (data[i].Sea_level * Pa_to_mmHg), label: HMS
+
+            });
 
 
-            }
+
         }
         RHTrelativo.render();
         Pressure.render();
