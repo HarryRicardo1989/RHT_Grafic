@@ -92,19 +92,19 @@ var PCD = function () {
             },
             stripLines: [
                 {
-                    value: 22,
-                    showOnTop: true,
-                    color: "rgba(0,0,255,1)"
+                    startValue: 26,
+                    endValue: 40,
+                    color: "rgba(255,0,0,0.015)"
                 },
                 {
-                    value: 24,
-                    showOnTop: 26,
-                    color: "rgba(0,255,0,1)"
+                    startValue: 22,
+                    endValue: 26,
+                    color: "rgba(0,255,0,0.015)"
                 },
                 {
-                    value: 26,
-                    showOnTop: 40,
-                    color: "rgba(255,0,0,1)"
+                    startValue: 0,
+                    endValue: 22,
+                    color: "rgba(0,0,255,0.015)"
                 },
             ]
             //interval: 1,
