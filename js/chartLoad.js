@@ -8,6 +8,7 @@ const GridColor = "#cococo"
 const bacgroundGraph = "rgba(0,0,0,0.4)"
 const fontColor = "black"
 const opac1 = 1
+const markerType = "cross"
 const Xaxis = {
     //interval: 30,
     //title: "Hora LOCAL",
@@ -201,7 +202,7 @@ var PCD = function () {
                 type: lineType,
                 lineThickness: lineThickness,
                 showInLegend: true,
-                markerType: "none",
+                markerType: markerType,
                 name: "Temperatura (°C)",
                 //lineColor: "rgba(255,0,0,1)",
                 color: "rgba(255,0,0,1)",
@@ -212,7 +213,7 @@ var PCD = function () {
             {
                 type: lineType,
                 showInLegend: true,
-                markerType: "none",
+                markerType: markerType,
                 lineThickness: lineThickness,
                 name: "Umidade (%)",
                 axisYType: "secondary",
@@ -291,7 +292,7 @@ var PCD = function () {
         data: [{
             type: lineType,
             showInLegend: true,
-            markerType: "none",
+            markerType: markerType,
             lineThickness: lineThickness,
             name: "Pressão (hPa)",
             //lineColor: "rgba(255,150,50,0.3)",
@@ -302,7 +303,7 @@ var PCD = function () {
         }, {
             type: lineType,
             showInLegend: true,
-            markerType: "none",
+            markerType: markerType,
             lineThickness: lineThickness,
             name: "Pressão (mmHg)",
             //lineColor: "rgba(50,150,150,0.3)",
@@ -362,7 +363,7 @@ var PCD = function () {
         data: [{
             type: lineType,
             lineThickness: lineThickness,
-            markerType: "none",
+            markerType: markerType,
             showInLegend: true,
             name: "Ponto de Orvalho (°C)",
             //lineColor: "rgba(255,0,0,1)",
