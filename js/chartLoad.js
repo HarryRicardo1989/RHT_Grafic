@@ -94,17 +94,17 @@ var PCD = function () {
                 {
                     startValue: 26,
                     endValue: 40,
-                    color: "rgba(255,0,0,0.015)"
+                    color: "rgba(255,0,0,0.02)"
                 },
                 {
                     startValue: 22,
                     endValue: 26,
-                    color: "rgba(0,255,0,0.015)"
+                    color: "rgba(0,255,0,0.02)"
                 },
                 {
                     startValue: 0,
                     endValue: 22,
-                    color: "rgba(0,0,255,0.015)"
+                    color: "rgba(0,0,255,0.02)"
                 },
             ]
             //interval: 1,
@@ -158,18 +158,6 @@ var PCD = function () {
         },
         {
             type: lineType,
-            lineThickness: lineThickness,
-            markerType: "none",
-            showInLegend: true,
-            name: "Ponto de Orvalho (°C)",
-            //lineColor: "rgba(255,0,0,1)",
-            color: "rgba(255,255,0,1)",
-            yValueFormatString: "Ponto de Orvalho 00.000°C",
-            xValueType: "dateTime",
-            dataPoints: DataDew_point
-        },
-        {
-            type: lineType,
             showInLegend: true,
             markerType: "none",
             lineThickness: lineThickness,
@@ -183,7 +171,6 @@ var PCD = function () {
         }
         ]
     });
-
 
 
     var Pressure = new CanvasJS.Chart("Pressure", {
@@ -290,6 +277,65 @@ var PCD = function () {
         }]
     });
 
+    var DewPoint = new CanvasJS.Chart("DewPoint", {
+        animationEnabled: false,
+        zoomEnabled: true,
+        backgroundColor: backgroundColor,
+        title: {
+
+            text: "Temperatura de Ponto de Orvalho",
+        },
+        exportEnabled: true,
+        legend: {
+            fontSize: 15,
+            fontFamily: "tamoha",
+            horizontalAlign: "center", // left, center ,right 
+            verticalAlign: "top",  // top, center, bottom
+        },
+        axisY: {
+            title: "Temperatura de Ponto de Orvalho (ºC)",
+            titleFontSize: 15,
+            includeZero: false,
+            labelFontSize: labelFontSize,
+            valueFormatString: "0.0",
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
+            //labelAngle: -45,
+            //interval: 0.5,
+            //includeZero: true
+        },
+
+
+        axisX: {
+            //interval: 30,
+            //title: "Hora LOCAL",
+            //titleFontSize: 15,
+            //intervalType: "minute",
+            valueFormatString: "DD/MMM/YY HH:mm:ss",
+            labelAngle: -45,
+            labelFontSize: 12,
+            labelMaxWidth: 50,
+            crosshair: { enabled: true },
+            gridDashType: "dot",
+            gridThickness: 1,
+            valueFormatString: "DD/MMM HH:mm:ss"
+        },
+        data: [{
+            type: lineType,
+            lineThickness: lineThickness,
+            markerType: "none",
+            showInLegend: true,
+            name: "Ponto de Orvalho (°C)",
+            //lineColor: "rgba(255,0,0,1)",
+            color: "rgba(255,255,0,1)",
+            yValueFormatString: "Ponto de Orvalho 00.000°C",
+            xValueType: "dateTime",
+            dataPoints: DataDew_point
+        },]
+    });
 
 
     var update = function (json) {
@@ -337,6 +383,7 @@ var PCD = function () {
         }
         RHTrelativo.render();
         Pressure.render();
+        DewPoint.render();
 
     }
     //************auto-update*****************/
