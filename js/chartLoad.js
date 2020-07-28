@@ -1,9 +1,34 @@
 const PCD_NAME = "PCD-001"
 const Pa_to_mmHg = 0.0075006157593005
-const lineThickness = 0.9
+const lineThickness = 2
 const lineType = "line"
 const labelFontSize = 10
-const backgroundColor = "#C0C0C0"
+const backgroundColor = "#aaaaaa"
+const GridColor = "#cococo"
+const bacgroundGraph = "rgba(0,0,0,0.4)"
+const fontColor = "black"
+const opac1 = 1
+const Xaxis = {
+    //interval: 30,
+    //title: "Hora LOCAL",
+    //titleFontSize: 15,
+    //intervalType: "minute",
+    gridColor: GridColor,
+    lineDashType: "dot",
+    valueFormatString: "DD/MMM/YY HH:mm:ss",
+    labelAngle: -45,
+    labelFontSize: 12,
+    labelMaxWidth: 50, // change label width accordingly
+    labelFontColor: fontColor,
+    crosshair: {
+        enabled: true,
+        gridDashType: "dot",
+
+    },
+    gridThickness: 1,
+    gridDashType: "dot",
+    valueFormatString: "DD/MMM HH:mm:ss"
+}
 
 ultima_amostra = function (data) {
     let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
@@ -60,117 +85,145 @@ var PCD = function () {
     var DataPressure = [];
     var Data_mmHg = [];
     var DataDew_point = [];
-    var RHTrelativo = new CanvasJS.Chart("RHTrelativo", {
-        animationEnabled: false,
-        zoomEnabled: true,
-        backgroundColor: backgroundColor,
-        title: {
-
-            text: "PCD-Temperatura/Umidade",
-            //paddingLeft: 5
-        },
-        exportEnabled: true,
-        legend: {
-            fontSize: 15,
-            fontFamily: "tamoha",
-            horizontalAlign: "center", // left, center ,right 
-            verticalAlign: "top",  // top, center, bottom
-        },
-        axisY: {
-            title: "Temperatura (°C)",
-            //labelAngle: -45,
-            titleFontSize: 15,
-            labelFontSize: labelFontSize,
-            valueFormatString: "0.0",
-            includeZero: false,
-            crosshair: {
-                enabled: true, //disable here
-                snapToDataPoint: true,
-                valueFormatString: "##.0",
-                lineThickness: lineThickness,
-
-            },
-            stripLines: [
-                {
-                    startValue: 26,
-                    endValue: 40,
-                    color: "rgba(255,0,0,0.02)"
-                },
-                {
-                    startValue: 22,
-                    endValue: 26,
-                    color: "rgba(0,255,0,0.02)"
-                },
-                {
-                    startValue: 0,
-                    endValue: 22,
-                    color: "rgba(0,0,255,0.02)"
-                },
-            ]
-            //interval: 1,
-            //includeZero: true,
-        },
-        axisY2: {
-            title: "Umidade (%)",
-            //labelAngle: -45,
-            titleFontSize: 15,
-            labelFontSize: labelFontSize,
-            //reversed: true,
-            valueFormatString: "0.0",
-            includeZero: false,
-            crosshair: {
-                enabled: true, //disable here
-                snapToDataPoint: true,
-                valueFormatString: "##.0",
-                lineThickness: lineThickness,
-            },
-            //interval: 2,
-            //maximum: 90,
-            //includeZero: true,
-
-
-        },
-        axisX: {
-            //interval: 30,
-            //title: "Hora LOCAL",
-            //titleFontSize: 15,
-            //intervalType: "minute",
-            valueFormatString: "DD/MMM/YY HH:mm:ss",
-            labelAngle: -45,
-            labelFontSize: 12,
-            labelMaxWidth: 50, // change label width accordingly
-            crosshair: { enabled: true },
-            gridDashType: "dot",
-            gridThickness: 1,
-            valueFormatString: "DD/MMM HH:mm:ss"
-        },
-        data: [{
-            type: lineType,
-            lineThickness: lineThickness,
-            showInLegend: true,
-            markerType: "none",
-            name: "Temperatura (°C)",
-            //lineColor: "rgba(255,0,0,1)",
-            color: "rgba(255,0,0,1)",
-            yValueFormatString: "Temperatura 00.000°C",
-            xValueType: "dateTime",
-            dataPoints: DataTemperatura
-        },
+    var RHTrelativo = new CanvasJS.Chart("RHTrelativo",
         {
-            type: lineType,
-            showInLegend: true,
-            markerType: "none",
-            lineThickness: lineThickness,
-            name: "Umidade (%)",
-            axisYType: "secondary",
-            //lineColor: "rgba(0,0,255,1)",
-            color: "rgba(0,0,255,1)",
-            yValueFormatString: "Umidade #,##%",
-            xValueType: "dateTime",
-            dataPoints: DataUmidade
-        }
-        ]
-    });
+            animationEnabled: false,
+            zoomEnabled: true,
+            backgroundColor: backgroundColor,
+            legend: {
+                fontColor: fontColor,
+                fontSize: 15,
+                fontFamily: "tamoha",
+                horizontalAlign: "center", // left, center ,right 
+                verticalAlign: "top",  // top, center, bottom
+            },
+            exportEnabled: true,
+            title: {
+                fontColor: fontColor,
+                text: "PCD-Temperatura/Umidade",
+                //paddingLeft: 5
+            },
+
+            axisY: {
+                title: "Temperatura (°C)",
+                //labelAngle: -45,
+                gridColor: GridColor,
+                titleFontSize: 15,
+                titleFontColor: fontColor,
+                labelFontSize: labelFontSize,
+                valueFormatString: "0.0",
+                labelFontColor: fontColor,
+                includeZero: false,
+                crosshair: {
+                    enabled: true, //disable here
+                    snapToDataPoint: true,
+                    valueFormatString: "##.0",
+                    lineThickness: lineThickness,
+
+                },
+                stripLines: [
+                    {
+                        startValue: 26,
+                        endValue: 28,
+                        color: "rgba(255,0,0,0.00)",
+                        label: "Calor",
+                        labelFontColor: "rgba(255,50,50,0.5)",
+                        labelAlign: "near",
+                        labelBackgroundColor: "rgba(0,0,0,0.01)",
+                    },
+                    {
+                        startValue: 20,
+                        endValue: 22,
+                        color: "rgba(0,0,255,0.00)",
+                        label: "Frio",
+                        labelFontColor: "rgba(0,180,255,0.3)",
+                        labelAlign: "near",
+                        labelBackgroundColor: "rgba(0,0,0,0.01)",
+                    },
+                    {
+                        startValue: 22.5,
+                        endValue: 26.5,
+                        color: "rgba(0,255,0,0.00)",
+                        label: "Conforto NBR",
+                        labelFontColor: "rgba(0,255,100,0.3)",
+                        labelAlign: "near",
+                        labelBackgroundColor: "rgba(0,0,0,0.01)",
+                    },
+                    {
+                        startValue: 26,
+                        endValue: 300,
+                        color: "rgba(255,0,0,0.07)",
+                    },
+                    {
+                        startValue: 22,
+                        endValue: 26,
+                        color: "rgba(0,255,0,0.05)"
+                    },
+                    {
+                        startValue: -40,
+                        endValue: 22,
+                        color: "rgba(0,0,255,0.07)"
+                    },
+
+                    {
+                        startValue: 2000,
+                        endValue: 0,
+                        color: bacgroundGraph
+                    },
+                ]
+                //interval: 1,
+                //includeZero: true,
+            },
+            axisY2: {
+                title: "Umidade (%)",
+                //labelAngle: -45,
+                titleFontSize: 15,
+                labelFontSize: labelFontSize,
+                //reversed: true,
+                titleFontColor: fontColor,
+                labelFontColor: fontColor,
+                valueFormatString: "0.0",
+                includeZero: false,
+                crosshair: {
+                    enabled: true, //disable here
+                    snapToDataPoint: true,
+                    valueFormatString: "##.0",
+                    lineThickness: lineThickness,
+                },
+                //interval: 2,
+                //maximum: 90,
+                //includeZero: true,
+
+
+            },
+            axisX: Xaxis,
+            data: [{
+                type: lineType,
+                lineThickness: lineThickness,
+                showInLegend: true,
+                markerType: "none",
+                name: "Temperatura (°C)",
+                //lineColor: "rgba(255,0,0,1)",
+                color: "rgba(255,0,0,1)",
+                yValueFormatString: "Temperatura 00.000°C",
+                xValueType: "dateTime",
+                dataPoints: DataTemperatura
+            },
+            {
+                type: lineType,
+                showInLegend: true,
+                markerType: "none",
+                lineThickness: lineThickness,
+                name: "Umidade (%)",
+                axisYType: "secondary",
+                //lineColor: "rgba(0,0,255,1)",
+                color: "rgba(0,170,255,1)",
+                yValueFormatString: "Umidade #,##%",
+                xValueType: "dateTime",
+                dataPoints: DataUmidade
+            }
+            ]
+        });
 
 
     var Pressure = new CanvasJS.Chart("Pressure", {
@@ -178,11 +231,13 @@ var PCD = function () {
         zoomEnabled: true,
         backgroundColor: backgroundColor,
         title: {
+            fontColor: fontColor,
 
             text: "Pressão Barométrica",
         },
         exportEnabled: true,
         legend: {
+            fontColor: fontColor,
             fontSize: 15,
             fontFamily: "tamoha",
             horizontalAlign: "center", // left, center ,right 
@@ -190,7 +245,10 @@ var PCD = function () {
         },
         axisY: {
             title: "Pressão Barométrica (hPa)",
+            gridColor: GridColor,
             titleFontSize: 15,
+            titleFontColor: fontColor,
+            labelFontColor: fontColor,
             includeZero: false,
             labelFontSize: labelFontSize,
             valueFormatString: "0.0",
@@ -206,7 +264,10 @@ var PCD = function () {
         axisY2: {
             title: "Pressão Barométrica (mmHg)",
             titleFontSize: 15,
+            gridColor: GridColor,
             //reversed: true,
+            titleFontColor: fontColor,
+            labelFontColor: fontColor,
             includeZero: false,
             labelFontSize: labelFontSize,
             valueFormatString: "0.0",
@@ -217,40 +278,16 @@ var PCD = function () {
             },
             stripLines: [
                 {
-                    startValue: 760,
-                    endValue: 800,
-                    color: "rgba(139,20,19,0.05)"
-                },
-                {
-                    startValue: 740,
-                    endValue: 760,
-                    color: "rgba(140,140,140,0.05)"
-                },
-                {
-                    startValue: 700,
-                    endValue: 740,
-                    color: "rgba(0,0,255,0.05)"
-                },
-            ]
+                    startValue: 2000,
+                    endValue: 0,
+                    color: bacgroundGraph
+                },]
             //labelAngle: -45,
             //interval: 0.5,
             //includeZero: true
 
         },
-        axisX: {
-            //interval: 30,
-            //title: "Hora LOCAL",
-            //titleFontSize: 15,
-            //intervalType: "minute",
-            valueFormatString: "DD/MMM/YY HH:mm:ss",
-            labelAngle: -45,
-            labelFontSize: 12,
-            labelMaxWidth: 50, // change label width accordingly
-            crosshair: { enabled: true },
-            gridDashType: "dot",
-            gridThickness: 1,
-            valueFormatString: "DD/MMM HH:mm:ss"
-        },
+        axisX: Xaxis,
         data: [{
             type: lineType,
             showInLegend: true,
@@ -269,7 +306,7 @@ var PCD = function () {
             lineThickness: lineThickness,
             name: "Pressão (mmHg)",
             //lineColor: "rgba(50,150,150,0.3)",
-            color: "rgb(50,100,150)",
+            color: "rgb(0,255,0)",
             axisYType: "secondary",
             yValueFormatString: "Pressão 0.00 mmHg",
             xValueType: "dateTime",
@@ -283,11 +320,13 @@ var PCD = function () {
         backgroundColor: backgroundColor,
         title: {
 
+            fontColor: fontColor,
             text: "Temperatura de Ponto de Orvalho",
         },
         exportEnabled: true,
         legend: {
             fontSize: 15,
+            fontColor: fontColor,
             fontFamily: "tamoha",
             horizontalAlign: "center", // left, center ,right 
             verticalAlign: "top",  // top, center, bottom
@@ -295,34 +334,31 @@ var PCD = function () {
         axisY: {
             title: "Temperatura de Ponto de Orvalho (ºC)",
             titleFontSize: 15,
+            gridColor: GridColor,
             includeZero: false,
+            titleFontColor: fontColor,
+            labelFontColor: fontColor,
             labelFontSize: labelFontSize,
+            fontColor: fontColor,
             valueFormatString: "0.0",
             crosshair: {
                 enabled: true, //disable here
                 snapToDataPoint: true,
                 valueFormatString: "##.0"
             },
+            stripLines: [
+                {
+                    startValue: 2000,
+                    endValue: 0,
+                    color: bacgroundGraph
+                },]
             //labelAngle: -45,
             //interval: 0.5,
             //includeZero: true
         },
 
 
-        axisX: {
-            //interval: 30,
-            //title: "Hora LOCAL",
-            //titleFontSize: 15,
-            //intervalType: "minute",
-            valueFormatString: "DD/MMM/YY HH:mm:ss",
-            labelAngle: -45,
-            labelFontSize: 12,
-            labelMaxWidth: 50,
-            crosshair: { enabled: true },
-            gridDashType: "dot",
-            gridThickness: 1,
-            valueFormatString: "DD/MMM HH:mm:ss"
-        },
+        axisX: Xaxis,
         data: [{
             type: lineType,
             lineThickness: lineThickness,
