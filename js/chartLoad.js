@@ -425,7 +425,7 @@ var PCD = function () {
     }
     //************auto-update*****************/
     callUpdate = function () {
-        $.getJSON("/rhtdata", update);
+        $.getJSON("/rhtdata/12", update);
     }
     callUpdate()
 
