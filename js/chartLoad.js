@@ -1,4 +1,4 @@
-var botao = 12;
+var botao = 24;
 const PCD_NAME = "PCD-001";
 const Pa_to_mmHg = 0.0075006157593005;
 const lineThickness = 2;

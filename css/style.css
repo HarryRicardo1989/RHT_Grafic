@@ -110,9 +110,9 @@ main .autoajust{
     color: #ababab;
     margin-left: 5vh;
     border-radius: 6px;
-    float: left;
     border: 1px solid black;
     width: 85px;
+    margin-top: 1em;
     height: 30px;
     transition-duration: 0.1s;
 }
@@ -149,7 +149,7 @@ div .graf {
 hr {
     border-top: 1px solid #727273;
     margin-bottom: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 footer{
     position:fixed;
