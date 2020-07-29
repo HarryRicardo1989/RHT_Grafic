@@ -57,7 +57,7 @@ main .autoajust{
     padding-top: 0vh;
 }
 .Explicacao{
-    font-size:1.5vh;
+    font-size:10px;
     padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
@@ -98,6 +98,24 @@ main .autoajust{
     padding-right: 2vh;
     color: darkgrey;
 }
+.botoes{
+    font-size: 15px;
+    padding-bottom: 10px;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    color: darkgrey;
+}
+.botao{
+    background-color: #aaaaaa;
+    margin-left: 5vh;
+    width: 75px;
+}
+
+div .botao:hover{
+    cursor: pointer;
+    background-color: rgba(0, 153, 255, 0.774);
+}
+
 
 .Verde{
     color: green;

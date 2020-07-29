@@ -1,14 +1,15 @@
-const PCD_NAME = "PCD-001"
-const Pa_to_mmHg = 0.0075006157593005
-const lineThickness = 2
-const lineType = "line"
-const labelFontSize = 10
-const backgroundColor = "#aaaaaa"
-const GridColor = "#cococo"
-const bacgroundGraph = "rgba(0,0,0,0.4)"
-const fontColor = "black"
-const opac1 = 1
-const markerType = "cross"
+var botao = 0.5;
+const PCD_NAME = "PCD-001";
+const Pa_to_mmHg = 0.0075006157593005;
+const lineThickness = 2;
+const lineType = "line";
+const labelFontSize = 10;
+const backgroundColor = "#aaaaaa";
+const GridColor = "#cococo";
+const bacgroundGraph = "rgba(0,0,0,0.4)";
+const fontColor = "black";
+const opac1 = 1;
+const markerType = "circle";
 const Xaxis = {
     //interval: 30,
     //title: "Hora LOCAL",
@@ -30,6 +31,8 @@ const Xaxis = {
     gridDashType: "dot",
     valueFormatString: "DD/MMM HH:mm:ss"
 }
+
+
 
 ultima_amostra = function (data) {
     let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
@@ -418,14 +421,17 @@ var PCD = function () {
 
 
         }
+        document.body.style.cursor = "default"
         RHTrelativo.render();
         Pressure.render();
         DewPoint.render();
+        document.querySelectorAll('.botao').forEach(e => e.style.visibility = "visible");
+
 
     }
     //************auto-update*****************/
     callUpdate = function () {
-        $.getJSON("/rhtdata/12", update);
+        $.getJSON(`/rhtdata/${botao}`, update);
     }
     callUpdate()
 
@@ -433,4 +439,13 @@ var PCD = function () {
         callUpdate()
 
     }, 10000)
+
+
+    tamanhoGrafico = function (horas) {
+        botao = horas
+        document.body.style.cursor = "wait"
+        document.querySelectorAll('.botao').forEach(e => e.style.visibility = "hidden");
+        callUpdate()
+    }
+
 }
