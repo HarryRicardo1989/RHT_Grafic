@@ -36,7 +36,7 @@ const Xaxis = {
 
 ultima_amostra = function (data) {
     console.log(data[0])
-    let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
+    let ultimaAtualizacao = new Date((data[0].timestamp - (3600 * 3)) * 1000).toISOString().slice(11, 19).replace('T', ' ');
     let temperaturaAtual = data[0].temperatura_ar;
     let umidadeAtual = data[0].umidade;
     let Altitude = data[0].altitude;
@@ -388,7 +388,7 @@ var PCD = function () {
         let data = json.PCD_data[PCD_NAME];
         ultima_amostra(data);
         for (var i = 0; i < data.length; i++) {
-            let localtimestamp = (data[i].timestamp) * 1000
+            let localtimestamp = (data[i].timestamp - (3600 * 3)) * 1000
             let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
             let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
             DataTemperatura.push({
