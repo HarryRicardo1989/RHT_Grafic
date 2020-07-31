@@ -35,14 +35,15 @@ const Xaxis = {
 
 
 ultima_amostra = function (data) {
+    console.log(data[0])
     let ultimaAtualizacao = new Date(data[0].timestamp * 1000).toISOString().slice(11, 19).replace('T', ' ');
-    let temperaturaAtual = data[0].Temperatura;
-    let umidadeAtual = data[0].Umidade;
-    let Altitude = data[0].Altitude;
-    let pressao = (data[0].Pressao / 100);
-    let sea_level_press = (data[0].Sea_level / 100);// convert Pa to hPa
-    let pressao_mmHg = (data[0].Sea_level * Pa_to_mmHg); //convert Pa to mmHg
-    let pontoDeOrvalho = data[0].Dew_point
+    let temperaturaAtual = data[0].temperatura_ar;
+    let umidadeAtual = data[0].umidade;
+    let Altitude = data[0].altitude;
+    let pressao = (data[0].pressao_local / 100);
+    let sea_level_press = (data[0].pressao_nivel_mar / 100);// convert Pa to hPa
+    let pressao_mmHg = (data[0].pressao_nivel_mar * Pa_to_mmHg); //convert Pa to mmHg
+    let pontoDeOrvalho = data[0].temperatura_orvalho
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
     stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
@@ -392,29 +393,29 @@ var PCD = function () {
             let HMS = new Date(localtimestamp).toISOString().slice(0, 19).replace('T', ' ');
             DataTemperatura.push({
                 x: datatimeUTC,
-                y: data[i].Temperatura, label: HMS
+                y: data[i].temperatura_ar, label: HMS
             });
             DataUmidade.push({
                 x: datatimeUTC,
-                y: data[i].Umidade, label: HMS
+                y: data[i].umidade, label: HMS
 
             });
-            if (data[i].Dew_point > 0) {
+            if (data[i].temperatura_orvalho > 0) {
                 DataDew_point.push({
                     x: datatimeUTC,
-                    y: (data[i].Dew_point), label: HMS
+                    y: (data[i].temperatura_orvalho), label: HMS
 
                 });
             }
 
             DataPressure.push({
                 x: datatimeUTC,
-                y: (data[i].Sea_level / 100), label: HMS
+                y: (data[i].pressao_nivel_mar / 100), label: HMS
 
             });
             Data_mmHg.push({
                 x: datatimeUTC,
-                y: (data[i].Sea_level * Pa_to_mmHg), label: HMS
+                y: (data[i].pressao_nivel_mar * Pa_to_mmHg), label: HMS
 
             });
 
