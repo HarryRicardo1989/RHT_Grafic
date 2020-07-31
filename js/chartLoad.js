@@ -431,7 +431,7 @@ var PCD = function () {
     }
     //************auto-update*****************/
     callUpdate = function () {
-        $.getJSON(`/rhtdata/${botao}`, update);
+        $.getJSON(`/api/select/${botao}`, update);
     }
     callUpdate()
 
