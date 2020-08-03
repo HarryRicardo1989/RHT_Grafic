@@ -1,4 +1,4 @@
-var botao = 24;
+var botao = 'horas/24';
 const PCD_NAME = "PCD-001";
 const Pa_to_mmHg = 0.0075006157593005;
 const lineThickness = 2;
@@ -10,6 +10,13 @@ const bacgroundGraph = "rgba(0,0,0,0.4)";
 const fontColor = "black";
 const opac1 = 1;
 const markerType = "circle";
+const toolTipConfig = {
+    borderColor: "black",
+    shared: true,
+    cornerRadius: 7,
+    fontSize: 16,
+    backgroundColor: "#555555"
+}
 const Xaxis = {
     //interval: 30,
     //title: "Hora LOCAL",
@@ -108,6 +115,7 @@ var PCD = function () {
                 text: "PCD-Temperatura/Umidade",
                 //paddingLeft: 5
             },
+            toolTip: toolTipConfig,
 
             axisY: {
                 title: "Temperatura (°C)",
@@ -240,6 +248,7 @@ var PCD = function () {
 
             text: "Pressão Barométrica",
         },
+        toolTip: toolTipConfig,
         exportEnabled: true,
         legend: {
             fontColor: fontColor,
@@ -328,6 +337,7 @@ var PCD = function () {
             fontColor: fontColor,
             text: "Temperatura de Ponto de Orvalho",
         },
+        toolTip: toolTipConfig,
         exportEnabled: true,
         legend: {
             fontSize: 15,
