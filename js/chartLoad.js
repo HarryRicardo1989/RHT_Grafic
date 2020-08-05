@@ -1,8 +1,8 @@
-var botao = 'horas/24';
+var botao = 'horasmedia/720';
 const PCD_NAME = "PCD-001";
 const Pa_to_mmHg = 0.0075006157593005;
 const lineThickness = 2;
-const lineType = "line";
+const lineType = "spline";
 const labelFontSize = 10;
 const backgroundColor = "#aaaaaa";
 const GridColor = "#cococo";
@@ -449,7 +449,7 @@ var PCD = function () {
     setInterval(function () {
         callUpdate()
 
-    }, 10000)
+    }, 5000)
 
 
     tamanhoGrafico = function (horas) {
