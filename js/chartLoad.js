@@ -42,7 +42,6 @@ const Xaxis = {
 
 
 ultima_amostra = function (data) {
-    console.log(data[0])
     let ultimaAtualizacao = new Date((data[0].timestamp - (3600 * 3)) * 1000).toISOString().slice(11, 19).replace('T', ' ');
     let temperaturaAtual = data[0].temperatura_ar;
     let umidadeAtual = data[0].umidade;
