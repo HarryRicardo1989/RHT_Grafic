@@ -56,12 +56,12 @@ ultima_amostra = function (data) {
     stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
     stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
     let probabilidade = ''
-    if (pressao_mmHg > 760.0 && umidadeAtual < 70) {
-        probabilidade = `<span class="Verde">"Não Chover"</span>`
+    if (pressao_mmHg < 760.0 && umidadeAtual > 30) {
+        probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
     } else if (pressao_mmHg < 750.0 && umidadeAtual > 60) {
         probabilidade = `<span class="Azul">"Chuva"</span>`
     } else {
-        probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
+        probabilidade = `<span class="Verde">"Não Chover"</span>`
     }
     const RHTAtual = document.getElementById("RHT");
     const Pressao_nivel_mar = document.getElementById("Pressao");
