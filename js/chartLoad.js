@@ -57,6 +57,9 @@ ultima_amostra = function (data) {
     let probabilidade = ''
     if (pressao_mmHg < 760.0 && umidadeAtual > 30) {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
+    } else if (pressao_mmHg < 760.0 && umidadeAtual > 15) {
+        probabilidade = `<span class="Aqua">"Nuvens"</span>`
+
     } else if (pressao_mmHg < 750.0 && umidadeAtual > 60) {
         probabilidade = `<span class="Azul">"Chuva"</span>`
     } else {
