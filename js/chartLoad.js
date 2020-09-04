@@ -55,7 +55,7 @@ ultima_amostra = function (data) {
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
     stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
     stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
-    stringWindSpeed = `Velociade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}m/s</span>`;
+    stringWindSpeed = `Velocidade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}m/s</span>`;
     let probabilidade = ''
     if (pressao_mmHg < 760.0 && umidadeAtual > 30) {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
@@ -225,7 +225,7 @@ var PCD = function () {
                 name: "Temperatura (°C)",
                 //lineColor: "rgba(255,0,0,1)",
                 color: "rgba(255,0,0,1)",
-                yValueFormatString: "Temperatura 00.000°C",
+                yValueFormatString: "00.000°C",
                 xValueType: "dateTime",
                 dataPoints: DataTemperatura
             },
@@ -238,7 +238,7 @@ var PCD = function () {
                 axisYType: "secondary",
                 //lineColor: "rgba(0,0,255,1)",
                 color: "rgba(0,170,255,1)",
-                yValueFormatString: "Umidade #,##%",
+                yValueFormatString: "#,##%",
                 xValueType: "dateTime",
                 dataPoints: DataUmidade
             }
@@ -317,7 +317,7 @@ var PCD = function () {
             name: "Pressão (hPa)",
             //lineColor: "rgba(255,150,50,0.3)",
             color: "rgb(255,150,0)",
-            yValueFormatString: "Pressão 0.00 hPa",
+            yValueFormatString: "0.00 hPa",
             xValueType: "dateTime",
             dataPoints: DataPressure
         }, {
@@ -329,7 +329,7 @@ var PCD = function () {
             //lineColor: "rgba(50,150,150,0.3)",
             color: "rgb(0,255,0)",
             axisYType: "secondary",
-            yValueFormatString: "Pressão 0.00 mmHg",
+            yValueFormatString: "0.00 mmHg",
             xValueType: "dateTime",
             dataPoints: Data_mmHg
         }]
@@ -389,7 +389,7 @@ var PCD = function () {
             name: "Ponto de Orvalho (°C)",
             //lineColor: "rgba(255,0,0,1)",
             color: "rgba(255,255,0,1)",
-            yValueFormatString: "Ponto de Orvalho 00.000°C",
+            yValueFormatString: "00.000°C",
             xValueType: "dateTime",
             dataPoints: DataDew_point
         },]
@@ -447,8 +447,8 @@ var PCD = function () {
             showInLegend: true,
             name: "Velocidade do Vento (m/s)",
             //lineColor: "rgba(255,0,0,1)",
-            color: "rgba(255,50,50,1)",
-            yValueFormatString: "Velocidade do Vento 0.000 m/s",
+            color: "rgba(255,0,255,1)",
+            yValueFormatString: "0.0000 m/s",
             xValueType: "dateTime",
             dataPoints: DataWindSpeed
         },]
