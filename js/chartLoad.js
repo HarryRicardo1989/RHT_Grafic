@@ -50,10 +50,12 @@ ultima_amostra = function (data) {
     let sea_level_press = (data[0].pressao_nivel_mar / 100);// convert Pa to hPa
     let pressao_mmHg = (data[0].pressao_nivel_mar * Pa_to_mmHg); //convert Pa to mmHg
     let pontoDeOrvalho = data[0].temperatura_orvalho
+    let VelocidadeVento = data[0].wind_speed
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
     stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
     stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
+    stringWindSpeed = `Velociade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}m/s</span>`;
     let probabilidade = ''
     if (pressao_mmHg < 760.0 && umidadeAtual > 30) {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
@@ -69,11 +71,13 @@ ultima_amostra = function (data) {
     const Pressao_nivel_mar = document.getElementById("Pressao");
     const Pressao_Atual = document.getElementById("Pressao1");
     const ponto_orvalhoT = document.getElementById("Dew_point");
+    const VelociadeVento = document.getElementById("Wind_speed");
     const Probabilidade = document.getElementById("Probabilidade");
     RHTAtual.innerHTML = stringRHT;
     Pressao_nivel_mar.innerHTML = stringPressao1;
     Pressao_Atual.innerHTML = stringPressao2;
     ponto_orvalhoT.innerHTML = stringDewPoint;
+    VelociadeVento.innerHTML = stringWindSpeed;
     Probabilidade.innerHTML = `Previsão de ${probabilidade} nas próximas Horas (Ribeirão Preto)`;
 }
 
@@ -99,6 +103,7 @@ var PCD = function () {
     var DataPressure = [];
     var Data_mmHg = [];
     var DataDew_point = [];
+    var DataWindSpeed = [];
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo",
         {
             animationEnabled: false,
@@ -389,7 +394,65 @@ var PCD = function () {
             dataPoints: DataDew_point
         },]
     });
+    var WindSpeed = new CanvasJS.Chart("WindSpeed", {
+        animationEnabled: false,
+        zoomEnabled: true,
+        backgroundColor: backgroundColor,
+        title: {
 
+            fontColor: fontColor,
+            text: "Velocidade do Vento",
+        },
+        toolTip: toolTipConfig,
+        exportEnabled: true,
+        legend: {
+            fontSize: 15,
+            fontColor: fontColor,
+            fontFamily: "tamoha",
+            horizontalAlign: "center", // left, center ,right 
+            verticalAlign: "top",  // top, center, bottom
+        },
+        axisY: {
+            title: "Velocidade do Vento (m/s)",
+            titleFontSize: 15,
+            gridColor: GridColor,
+            includeZero: false,
+            titleFontColor: fontColor,
+            labelFontColor: fontColor,
+            labelFontSize: labelFontSize,
+            fontColor: fontColor,
+            valueFormatString: "0.0",
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
+            stripLines: [
+                {
+                    startValue: 2000,
+                    endValue: 0,
+                    color: bacgroundGraph
+                },]
+            //labelAngle: -45,
+            //interval: 0.5,
+            //includeZero: true
+        },
+
+
+        axisX: Xaxis,
+        data: [{
+            type: lineType,
+            lineThickness: lineThickness,
+            markerType: markerType,
+            showInLegend: true,
+            name: "Velocidade do Vento (m/s)",
+            //lineColor: "rgba(255,0,0,1)",
+            color: "rgba(255,50,50,1)",
+            yValueFormatString: "Velocidade do Vento 0.000 m/s",
+            xValueType: "dateTime",
+            dataPoints: DataWindSpeed
+        },]
+    });
 
     var update = function (json) {
         DataTemperatura.length = 0;
@@ -397,6 +460,7 @@ var PCD = function () {
         DataPressure.length = 0;
         Data_mmHg.length = 0;
         DataDew_point.length = 0;
+        DataWindSpeed.length = 0;
         let data = json.PCD_data[PCD_NAME];
         ultima_amostra(data);
         for (var i = 0; i < data.length; i++) {
@@ -430,6 +494,11 @@ var PCD = function () {
                 y: (data[i].pressao_nivel_mar * Pa_to_mmHg), label: HMS
 
             });
+            DataWindSpeed.push({
+                x: datatimeUTC,
+                y: (data[i].wind_speed), label: HMS
+
+            });
 
 
 
@@ -438,6 +507,7 @@ var PCD = function () {
         RHTrelativo.render();
         Pressure.render();
         DewPoint.render();
+        WindSpeed.render();
         document.querySelectorAll('.botao').forEach(e => e.style.visibility = "visible");
 
 
