@@ -104,6 +104,8 @@ var PCD = function () {
     var Data_mmHg = [];
     var DataDew_point = [];
     var DataWindSpeed = [];
+    var DataTVOC = [];
+    var DataCO2 = [];
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo",
         {
             animationEnabled: false,
@@ -453,7 +455,104 @@ var PCD = function () {
             dataPoints: DataWindSpeed
         },]
     });
+    var AirQuality = new CanvasJS.Chart("AirQuality",
+        {
+            animationEnabled: false,
+            zoomEnabled: true,
+            backgroundColor: backgroundColor,
+            legend: {
+                fontColor: fontColor,
+                fontSize: 15,
+                fontFamily: "tamoha",
+                horizontalAlign: "center", // left, center ,right 
+                verticalAlign: "top",  // top, center, bottom
+            },
+            exportEnabled: true,
+            title: {
+                fontColor: fontColor,
+                text: "CO2/TVOC",
+                //paddingLeft: 5
+            },
+            toolTip: toolTipConfig,
 
+            axisY: {
+                title: "CO2 (PPM)",
+                //labelAngle: -45,
+                gridColor: GridColor,
+                titleFontSize: 15,
+                titleFontColor: fontColor,
+                labelFontSize: labelFontSize,
+                valueFormatString: "0.0",
+                labelFontColor: fontColor,
+                includeZero: false,
+                crosshair: {
+                    enabled: true, //disable here
+                    snapToDataPoint: true,
+                    valueFormatString: "##.0",
+                    lineThickness: lineThickness,
+
+                },
+                stripLines: [
+
+                    {
+                        startValue: 2000,
+                        endValue: 0,
+                        color: bacgroundGraph
+                    },
+                ]
+                //interval: 1,
+                //includeZero: true,
+            },
+            axisY2: {
+                title: "TVOC (ppm)",
+                //labelAngle: -45,
+                titleFontSize: 15,
+                labelFontSize: labelFontSize,
+                //reversed: true,
+                titleFontColor: fontColor,
+                labelFontColor: fontColor,
+                valueFormatString: "0.0",
+                includeZero: false,
+                crosshair: {
+                    enabled: true, //disable here
+                    snapToDataPoint: true,
+                    valueFormatString: "##.0",
+                    lineThickness: lineThickness,
+                },
+                //interval: 2,
+                //maximum: 90,
+                //includeZero: true,
+
+
+            },
+            axisX: Xaxis,
+            data: [{
+                type: lineType,
+                lineThickness: lineThickness,
+                showInLegend: true,
+                markerType: markerType,
+                name: "CO2 (PPM)",
+                //lineColor: "rgba(255,0,0,1)",
+                color: "rgba(127,127,255,1)",
+                yValueFormatString: "000 PPM",
+                xValueType: "dateTime",
+                dataPoints: DataCO2
+            },
+            {
+                type: lineType,
+                showInLegend: true,
+                markerType: markerType,
+                lineThickness: lineThickness,
+                name: "TVOC (ppm)",
+                axisYType: "secondary",
+                //lineColor: "rgba(0,0,255,1)",
+                color: "rgba(50,0,127,1)",
+                yValueFormatString: "000 PPM",
+                xValueType: "dateTime",
+                dataPoints: DataTVOC
+            }
+            ]
+        });
     var update = function (json) {
         DataTemperatura.length = 0;
         DataUmidade.length = 0;
@@ -461,6 +560,9 @@ var PCD = function () {
         Data_mmHg.length = 0;
         DataDew_point.length = 0;
         DataWindSpeed.length = 0;
+        DataCO2.length = 0;
+        DataTVOC.length = 0;
+
         let data = json.PCD_data[PCD_NAME];
         ultima_amostra(data);
         for (var i = 0; i < data.length; i++) {
@@ -499,6 +601,16 @@ var PCD = function () {
                 y: (data[i].wind_speed), label: HMS
 
             });
+            DataCO2.push({
+                x: datatimeUTC,
+                y: (data[i].co2), label: HMS
+
+            });
+            DataTVOC.push({
+                x: datatimeUTC,
+                y: (data[i].tvoc), label: HMS
+
+            });
 
 
 
@@ -508,6 +620,7 @@ var PCD = function () {
         Pressure.render();
         DewPoint.render();
         WindSpeed.render();
+        AirQuality.render();
         document.querySelectorAll('.botao').forEach(e => e.style.visibility = "visible");
 
 
