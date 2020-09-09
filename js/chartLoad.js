@@ -1,4 +1,4 @@
-var botao = 'horas/24';
+var botao = 'horas/12';
 const PCD_NAME = "PCD-001";
 const Pa_to_mmHg = 0.0075006157593005;
 const lineThickness = 2;
@@ -51,11 +51,14 @@ ultima_amostra = function (data) {
     let pressao_mmHg = (data[0].pressao_nivel_mar * Pa_to_mmHg); //convert Pa to mmHg
     let pontoDeOrvalho = data[0].temperatura_orvalho
     let VelocidadeVento = data[0].wind_speed
+    let tvocppm = data[0].tvoc
+    let co2ppm = data[0].co2
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
-    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altimetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
+    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altímetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
     stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
     stringWindSpeed = `Velocidade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}m/s</span>`;
+    stringCO2Tvoc = `CO2: <span class="Verde">${co2ppm} PPM </span> TVOC: <span class="Verde">${tvocppm} PPM</span>`;
     let probabilidade = ''
     if (pressao_mmHg < 760.0 && umidadeAtual > 30) {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
@@ -73,11 +76,13 @@ ultima_amostra = function (data) {
     const ponto_orvalhoT = document.getElementById("Dew_point");
     const VelociadeVento = document.getElementById("Wind_speed");
     const Probabilidade = document.getElementById("Probabilidade");
+    const CO2TVOC = document.getElementById("airQuality");
     RHTAtual.innerHTML = stringRHT;
     Pressao_nivel_mar.innerHTML = stringPressao1;
     Pressao_Atual.innerHTML = stringPressao2;
     ponto_orvalhoT.innerHTML = stringDewPoint;
     VelociadeVento.innerHTML = stringWindSpeed;
+    CO2TVOC.innerHTML = stringCO2Tvoc;
     Probabilidade.innerHTML = `Previsão de ${probabilidade} nas próximas Horas (Ribeirão Preto)`;
 }
 
@@ -495,7 +500,7 @@ var PCD = function () {
                 stripLines: [
 
                     {
-                        startValue: 2000,
+                        startValue: 20000,
                         endValue: 0,
                         color: bacgroundGraph
                     },
