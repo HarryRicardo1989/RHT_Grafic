@@ -1,8 +1,12 @@
-var botao = 'horas/24';
+
+var botao = 'horas';
+var tempo = 24;
+let tempoHora = 24
+let tempoDia = 1
 const PCD_NAME = "PCD-001";
 const Pa_to_mmHg = 0.0075006157593005;
 const lineThickness = 2;
-const lineType = "spline";
+const lineType = "line";
 const labelFontSize = 10;
 const backgroundColor = "#aaaaaa";
 const GridColor = "#cococo";
@@ -84,6 +88,8 @@ ultima_amostra = function (data) {
     VelociadeVento.innerHTML = stringWindSpeed;
     CO2TVOC.innerHTML = stringCO2Tvoc;
     Probabilidade.innerHTML = `Previsão de ${probabilidade} nas próximas Horas (Ribeirão Preto)`;
+
+
 }
 
 function startTime() {
@@ -626,13 +632,14 @@ var PCD = function () {
         DewPoint.render();
         WindSpeed.render();
         AirQuality.render();
-        document.querySelectorAll('.botao').forEach(e => e.style.visibility = "visible");
+
 
 
     }
     //************auto-update*****************/
     callUpdate = function () {
-        $.getJSON(`/api/select/${botao}`, update);
+        $.getJSON(`/api/select/${botao}/${tempo}`, update);
+
     }
     callUpdate()
 
@@ -641,12 +648,58 @@ var PCD = function () {
 
     }, 5000)
 
+    botaoSelect = function () {
 
-    tamanhoGrafico = function (horas) {
-        botao = horas
-        document.body.style.cursor = "wait"
-        document.querySelectorAll('.botao').forEach(e => e.style.visibility = "hidden");
-        callUpdate()
+        if (botao === 'horas') {
+            seletor = 'Full data';
+            document.getElementById('botaoAno').style.visibility = "hidden";
+            document.getElementById('botaoMes').style.visibility = "hidden";
+            document.querySelectorAll('.intraHour').forEach(e => e.style.visibility = "hidden");
+            document.querySelectorAll('.intraDay').forEach(e => e.style.visibility = "visible");
+
+        }
+        else if (botao === 'horasmedia') {
+            seletor = 'Media/Hora';
+            document.getElementById('botaoAno').style.visibility = "visible";
+            document.getElementById('botaoMes').style.visibility = "visible";
+            document.querySelectorAll('.intraDay').forEach(e => e.style.visibility = "visible");
+            document.querySelectorAll('.intraHour').forEach(e => e.style.visibility = "hidden");
+
+        } else {
+            seletor = 'Media/Dia';
+            document.getElementById('botaoAno').style.visibility = "visible";
+            document.getElementById('botaoMes').style.visibility = "visible";
+            document.querySelectorAll('.intraDay').forEach(e => e.style.visibility = "hidden");
+            document.querySelectorAll('.intraHour').forEach(e => e.style.visibility = "hidden");
+
+        }
+
+        if (botao === "dias") {
+
+            tempo = tempoDia;
+        }
+        else if (botao === 'horas' || botao === 'horasmedia') {
+            tempo = tempoHora;
+        }
+
+
+        callUpdate();
     }
+
+    tamanhoGrafico = function (horas, dias) {
+        tempoHora = horas;
+        tempoDia = dias;
+
+        document.body.style.cursor = "wait"
+        botaoSelect();
+    }
+
+    periodoSelect = function (periodo) {
+        botao = periodo;
+        document.body.style.cursor = "wait"
+        botaoSelect();
+
+    }
+
 
 }

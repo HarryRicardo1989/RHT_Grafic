@@ -37,16 +37,45 @@
         </div>
         <hr>
         <div>
-            <h2 class="botoes">Selecione o tempo desejado:</h2>
-            <button class="botao" type="button" onclick="tamanhoGrafico('horas/0.25')">15 minutos</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('horas/0.5')">30 minutos</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('horas/1')">1 Hora</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('horas/6')">6 Horas</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('horas/12')">12 Horas</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('horas/24')">24 Horas</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('horasmedia/168')">7 dias</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('dias/30')">1 mês</button>
-            <button class="botao" type="button" onclick="tamanhoGrafico('dias/365')">1 ano</button>
+            <h2 class="botoes">Selecione o tipo desejado:</h2>
+            <label class="botao">Full data
+                <input type="radio" checked="checked" name="radio" onclick="periodoSelect('horas')">
+            </label>
+            <label class="botao">Media/Hora
+                <input type="radio" name="radio" onclick="periodoSelect('horasmedia')">
+            </label>
+            <label class="botao">Media/Dia
+                <input type="radio" name="radio" onclick="periodoSelect('dias')">
+            </label>
+            <hr>
+            <h2 class="botoes">Selecione o tempo desejado:<span class="Verde" id="tempo"></span></h2>
+            <label class="botao intraDay intraHour">15 minutos
+                <input type="radio" checked="checked" name="tempo" onclick="tamanhoGrafico(0.25,0.0104)">
+            </label>
+            <label class="botao intraDay intraHour">30 minutos
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(0.5,0.0208)">
+            </label>
+            <label class="botao intraDay intraHour">1 Hora
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(1,0.041)">
+            </label>
+            <label class="botao intraDay">6 Horas
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(6,0.25)">
+            </label>
+            <label class="botao">12 Horas
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(12,0.5)">
+            </label>
+            <label class="botao">24 Horas
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(24,1)" checked>
+            </label>
+            <label class="botao">7 dias
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(168,7)">
+            </label>
+            <label class="botao" id="botaoMes">1 mês
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(720,30)">
+            </label>
+            <label class="botao" id="botaoAno">1 ano
+                <input type="radio" name="tempo" onclick="tamanhoGrafico(8760,365)">
+            </label>
         </div>
         <hr>
         <div class="autoajust">
