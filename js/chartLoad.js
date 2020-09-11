@@ -200,7 +200,7 @@ var PCD = function () {
 
                     {
                         startValue: 2000,
-                        endValue: 0,
+                        endValue: -100,
                         color: bacgroundGraph
                     },
                 ]
@@ -313,7 +313,7 @@ var PCD = function () {
             stripLines: [
                 {
                     startValue: 2000,
-                    endValue: 0,
+                    endValue: -100,
                     color: bacgroundGraph
                 },]
             //labelAngle: -45,
@@ -384,7 +384,7 @@ var PCD = function () {
             stripLines: [
                 {
                     startValue: 2000,
-                    endValue: 0,
+                    endValue: -100,
                     color: bacgroundGraph
                 },]
             //labelAngle: -45,
@@ -443,7 +443,7 @@ var PCD = function () {
             stripLines: [
                 {
                     startValue: 2000,
-                    endValue: 0,
+                    endValue: -100,
                     color: bacgroundGraph
                 },]
             //labelAngle: -45,
@@ -507,7 +507,7 @@ var PCD = function () {
 
                     {
                         startValue: 20000,
-                        endValue: 0,
+                        endValue: -100,
                         color: bacgroundGraph
                     },
                 ]
