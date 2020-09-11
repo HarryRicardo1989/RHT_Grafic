@@ -33,7 +33,7 @@ body{
 }
 .titulo{
     display:inline-block;
-    height:3vh;
+    height:5vh;
     line-height:5vh;
     color: darkgrey;
 }
@@ -41,17 +41,17 @@ body{
     display: none;
 }
 .titulo h1{
-    font-size:4vh;
+    font-size:3vh;
     text-align:center
 
 }
 .clock{
-    color:rgba(171,221,171,.74);
+    color:rgba(160,210,160,.74);
     font-family: 'Digital-7 Mono';
     height:3vh;
     line-height:2vh;
     font-size:5vh;
-    padding:.4em
+    padding:.3em
 }
 main .autoajust{
     text-align:center;
@@ -59,7 +59,7 @@ main .autoajust{
 }
 
 .atual{
-    padding-top: 0.5vh;
+    padding-top: 3vh;
 }
 .Explicacao{
     font-size:10px;
@@ -118,11 +118,12 @@ main .autoajust{
     color: darkgrey;
 }
 .botoes{
+    text-align: center;
     font-size: 15px;
+    color: #5e8086;
     padding-bottom: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
-    color: darkgrey;
 }
 .botao{
     font-size: 15px;

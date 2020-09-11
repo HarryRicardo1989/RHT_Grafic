@@ -132,7 +132,7 @@ var PCD = function () {
             exportEnabled: true,
             title: {
                 fontColor: fontColor,
-                text: "PCD-Temperatura/Umidade",
+                text: "Temperatura/Umidade",
                 //paddingLeft: 5
             },
             toolTip: toolTipConfig,
@@ -589,13 +589,12 @@ var PCD = function () {
                 y: data[i].umidade, label: HMS
 
             });
-            if (data[i].temperatura_orvalho > 0) {
-                DataDew_point.push({
-                    x: datatimeUTC,
-                    y: (data[i].temperatura_orvalho), label: HMS
 
-                });
-            }
+            DataDew_point.push({
+                x: datatimeUTC,
+                y: (data[i].temperatura_orvalho), label: HMS
+
+            });
 
             DataPressure.push({
                 x: datatimeUTC,
