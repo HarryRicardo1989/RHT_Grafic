@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'digital-7regular';
-    src: url('./digital-7regular.ttf') format('truetype');
+    font-family: 'Digital-7 Mono';
+    src: url('./digital-7mono.ttf') format('truetype');
 }
 
 body{
@@ -47,7 +47,7 @@ body{
 }
 .clock{
     color:rgba(171,221,171,.74);
-    font-family: 'digital-7regular';
+    font-family: 'Digital-7 Mono';
     height:3vh;
     line-height:2vh;
     font-size:5vh;
