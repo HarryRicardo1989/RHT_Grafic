@@ -506,7 +506,7 @@ var PCD = function () {
                 stripLines: [
 
                     {
-                        startValue: 20000,
+                        startValue: 200000,
                         endValue: -100,
                         color: bacgroundGraph
                     },
