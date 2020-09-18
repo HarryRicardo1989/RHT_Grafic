@@ -673,6 +673,7 @@ var PCD = function () {
 
         }
 
+
         if (botao === "dias") {
 
             tempo = tempoDia;
