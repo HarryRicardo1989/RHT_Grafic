@@ -128,8 +128,8 @@ main .autoajust{
 .botao{
     font-size: 15px;
     padding-bottom: 10px;
-    padding-left: 2vh;
-    padding-right: 2vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
     color: darkgrey;
     margin-left: 5vh;
     border-radius: 7px;
