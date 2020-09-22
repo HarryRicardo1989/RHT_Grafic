@@ -564,6 +564,149 @@ var PCD = function () {
             }
             ]
         });
+    var Chuva = new CanvasJS.Chart("Chuva", {
+        animationEnabled: false,
+        zoomEnabled: true,
+        backgroundColor: backgroundColor,
+        legend: {
+            fontColor: fontColor,
+            fontSize: 15,
+            fontFamily: "tamoha",
+            horizontalAlign: "center", // left, center ,right 
+            verticalAlign: "top",  // top, center, bottom
+        },
+        exportEnabled: true,
+        title: {
+            fontColor: fontColor,
+            text: "Relação Umidade/Pressão/Vento ",
+            //paddingLeft: 5
+        },
+        toolTip: toolTipConfig,
+        axisY: [{
+            title: "Umidade (%)",
+            //labelAngle: -45,
+            titleFontSize: 15,
+            labelFontSize: labelFontSize,
+            //reversed: true,
+            titleFontColor: fontColor,
+            labelFontColor: fontColor,
+            valueFormatString: "0.0",
+            includeZero: false,
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0",
+                lineThickness: lineThickness,
+            },
+            suffix: "%"
+        },
+        {
+            title: "Pressão Barométrica (mmHg)",
+            titleFontSize: 15,
+            gridColor: GridColor,
+            //reversed: true,
+            titleFontColor: fontColor,
+            labelFontColor: fontColor,
+            includeZero: false,
+            labelFontSize: labelFontSize,
+            valueFormatString: "0.0",
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
+            /* stripLines: [
+                {
+                    startValue: 2000,
+                    endValue: -100,
+                    color: "rgba(0,0,0,0.1)"
+                },] */
+            //labelAngle: -45,
+            //interval: 0.5,
+            //includeZero: true
+        }],
+        axisY2: {
+            title: "Velocidade do Vento (m/s)",
+            titleFontSize: 15,
+            gridColor: GridColor,
+            includeZero: false,
+            titleFontColor: fontColor,
+            labelFontColor: fontColor,
+            labelFontSize: labelFontSize,
+            fontColor: fontColor,
+            valueFormatString: "0.0",
+            crosshair: {
+                enabled: true, //disable here
+                snapToDataPoint: true,
+                valueFormatString: "##.0"
+            },
+            stripLines: [
+                {
+                    startValue: 2000,
+                    endValue: -100,
+                    color: bacgroundGraph
+                },],
+            //labelAngle: -45,
+            //interval: 0.5,
+            //includeZero: true
+            suffix: "m/s"
+        },
+        toolTip: {
+            shared: true
+        },
+        legend: {
+            cursor: "pointer",
+            itemclick: toggleDataSeries
+        },
+        data: [
+            {
+                type: lineType,
+                showInLegend: true,
+                markerType: markerType,
+                lineThickness: lineThickness,
+                name: "Pressão (mmHg)",
+                //lineColor: "rgba(50,150,150,0.3)",
+                color: "rgb(0,255,0)",
+                yValueFormatString: "0.00 mmHg",
+                xValueType: "dateTime",
+                axisYIndex: 1,
+                dataPoints: Data_mmHg
+            }, {
+                type: lineType,
+                showInLegend: true,
+                markerType: markerType,
+                lineThickness: lineThickness,
+                name: "Umidade (%)",
+                //lineColor: "rgba(0,0,255,1)",
+                color: "rgba(0,170,255,1)",
+                yValueFormatString: "#,##%",
+                xValueType: "dateTime",
+                axisYIndex: 0,
+                dataPoints: DataUmidade
+            },
+            {
+                type: lineType,
+                lineThickness: lineThickness,
+                markerType: markerType,
+                showInLegend: true,
+                name: "Velocidade do Vento (m/s)",
+                //lineColor: "rgba(255,0,0,1)",
+                color: "rgba(255,255,255,0.2)",
+                yValueFormatString: "0.0000 m/s",
+                xValueType: "dateTime",
+                dataPoints: DataWindSpeed,
+                axisYType: "secondary",
+            }]
+
+    });
+    function toggleDataSeries(e) {
+        if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            e.dataSeries.visible = false;
+        } else {
+            e.dataSeries.visible = true;
+        }
+        e.chart.render();
+    }
     var update = function (json) {
         DataTemperatura.length = 0;
         DataUmidade.length = 0;
@@ -631,7 +774,7 @@ var PCD = function () {
         DewPoint.render();
         WindSpeed.render();
         AirQuality.render();
-
+        Chuva.render();
 
 
     }
