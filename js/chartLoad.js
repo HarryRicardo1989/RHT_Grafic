@@ -57,12 +57,15 @@ ultima_amostra = function (data) {
     let VelocidadeVento = data[0].wind_speed
     let tvocppm = data[0].tvoc
     let co2ppm = data[0].co2
+    let chuvaStatus = data[0].chuva_status == 1 ? "SIM" : "NAO"
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
     stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altímetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
     stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
     stringWindSpeed = `Velocidade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}m/s</span>`;
     stringCO2Tvoc = `CO2: <span class="Verde">${co2ppm} PPM </span> TVOC: <span class="Verde">${tvocppm} PPM</span>`;
+    stringChuvaStatus = `Está chovendo?: <span class="Verde">${chuvaStatus}</span>`;
+
     let probabilidade = ''
     if (pressao_mmHg < 760.0 && umidadeAtual > 30) {
         probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
@@ -81,12 +84,14 @@ ultima_amostra = function (data) {
     const VelociadeVento = document.getElementById("Wind_speed");
     const Probabilidade = document.getElementById("Probabilidade");
     const CO2TVOC = document.getElementById("airQuality");
+    const statusChuva = document.getElementById("statusChuva");
     RHTAtual.innerHTML = stringRHT;
     Pressao_nivel_mar.innerHTML = stringPressao1;
     Pressao_Atual.innerHTML = stringPressao2;
     ponto_orvalhoT.innerHTML = stringDewPoint;
     VelociadeVento.innerHTML = stringWindSpeed;
     CO2TVOC.innerHTML = stringCO2Tvoc;
+    statusChuva.innerHTML = stringChuvaStatus;
     Probabilidade.innerHTML = `Previsão de ${probabilidade} nas próximas Horas (Ribeirão Preto)`;
 
 
