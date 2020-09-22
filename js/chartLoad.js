@@ -122,6 +122,7 @@ var PCD = function () {
     var DataWindSpeed = [];
     var DataTVOC = [];
     var DataCO2 = [];
+    var DataChuvaStatus = [];
     var RHTrelativo = new CanvasJS.Chart("RHTrelativo",
         {
             animationEnabled: false,
@@ -569,141 +570,140 @@ var PCD = function () {
             }
             ]
         });
-    var Chuva = new CanvasJS.Chart("Chuva", {
-        animationEnabled: false,
-        zoomEnabled: true,
-        backgroundColor: backgroundColor,
-        legend: {
-            fontColor: fontColor,
-            fontSize: 15,
-            fontFamily: "tamoha",
-            horizontalAlign: "center", // left, center ,right 
-            verticalAlign: "top",  // top, center, bottom
-        },
-        exportEnabled: true,
-        title: {
-            fontColor: fontColor,
-            text: "Relação Umidade/Pressão/Vento ",
-            //paddingLeft: 5
-        },
-        toolTip: toolTipConfig,
-        axisY: [{
-            title: "Umidade (%)",
-            //labelAngle: -45,
-            titleFontSize: 15,
-            labelFontSize: labelFontSize,
-            //reversed: true,
-            titleFontColor: fontColor,
-            labelFontColor: fontColor,
-            valueFormatString: "0.0",
-            includeZero: false,
-            crosshair: {
-                enabled: true, //disable here
-                snapToDataPoint: true,
-                valueFormatString: "##.0",
-                lineThickness: lineThickness,
-            },
-            suffix: "%"
-        },
+    var Chuva = new CanvasJS.Chart("Chuva",
         {
-            title: "Pressão Barométrica (mmHg)",
-            titleFontSize: 15,
-            gridColor: GridColor,
-            //reversed: true,
-            titleFontColor: fontColor,
-            labelFontColor: fontColor,
-            includeZero: false,
-            labelFontSize: labelFontSize,
-            valueFormatString: "0.0",
-            crosshair: {
-                enabled: true, //disable here
-                snapToDataPoint: true,
-                valueFormatString: "##.0"
+            animationEnabled: false,
+            zoomEnabled: true,
+            backgroundColor: backgroundColor,
+            legend: {
+                cursor: "pointer",
+                itemclick: toggleDataSeries,
+                fontColor: fontColor,
+                fontSize: 15,
+                fontFamily: "tamoha",
+                horizontalAlign: "center", // left, center ,right 
+                verticalAlign: "top",  // top, center, bottom
             },
-            /* stripLines: [
-                {
-                    startValue: 2000,
-                    endValue: -100,
-                    color: "rgba(0,0,0,0.1)"
-                },] */
-            //labelAngle: -45,
-            //interval: 0.5,
-            //includeZero: true
-        }],
-        axisY2: {
-            title: "Velocidade do Vento (m/s)",
-            titleFontSize: 15,
-            gridColor: GridColor,
-            includeZero: false,
-            titleFontColor: fontColor,
-            labelFontColor: fontColor,
-            labelFontSize: labelFontSize,
-            fontColor: fontColor,
-            valueFormatString: "0.0",
-            crosshair: {
-                enabled: true, //disable here
-                snapToDataPoint: true,
-                valueFormatString: "##.0"
+            toolTip: toolTipConfig,
+            exportEnabled: true,
+            title: {
+                fontColor: fontColor,
+                text: "Relação Umidade/Pressão/Chuva ",
+                //paddingLeft: 5
             },
-            stripLines: [
-                {
-                    startValue: 2000,
-                    endValue: -100,
-                    color: bacgroundGraph
-                },],
-            //labelAngle: -45,
-            //interval: 0.5,
-            //includeZero: true
-            suffix: "m/s"
-        },
-        toolTip: {
-            shared: true
-        },
-        legend: {
-            cursor: "pointer",
-            itemclick: toggleDataSeries
-        },
-        data: [
-            {
-                type: lineType,
-                showInLegend: true,
-                markerType: markerType,
-                lineThickness: lineThickness,
-                name: "Pressão (mmHg)",
-                //lineColor: "rgba(50,150,150,0.3)",
-                color: "rgb(0,255,0)",
-                yValueFormatString: "0.00 mmHg",
-                xValueType: "dateTime",
-                axisYIndex: 1,
-                dataPoints: Data_mmHg
-            }, {
-                type: lineType,
-                showInLegend: true,
-                markerType: markerType,
-                lineThickness: lineThickness,
-                name: "Umidade (%)",
-                //lineColor: "rgba(0,0,255,1)",
-                color: "rgba(0,170,255,1)",
-                yValueFormatString: "#,##%",
-                xValueType: "dateTime",
-                axisYIndex: 0,
-                dataPoints: DataUmidade
+            toolTip: toolTipConfig,
+            axisY: [{
+                title: "Umidade (%)",
+                //labelAngle: -45,
+                titleFontSize: 15,
+                labelFontSize: labelFontSize,
+                //reversed: true,
+                titleFontColor: fontColor,
+                labelFontColor: fontColor,
+                valueFormatString: "0.0",
+                includeZero: false,
+                crosshair: {
+                    enabled: true, //disable here
+                    snapToDataPoint: true,
+                    valueFormatString: "##.0",
+                    lineThickness: lineThickness,
+                },
+                suffix: "%"
             },
             {
-                type: lineType,
-                lineThickness: lineThickness,
-                markerType: markerType,
-                showInLegend: true,
-                name: "Velocidade do Vento (m/s)",
-                //lineColor: "rgba(255,0,0,1)",
-                color: "rgba(255,255,255,0.2)",
-                yValueFormatString: "0.0000 m/s",
-                xValueType: "dateTime",
-                dataPoints: DataWindSpeed,
-                axisYType: "secondary",
-            }]
+                title: "Pressão Barométrica (mmHg)",
+                titleFontSize: 15,
+                gridColor: GridColor,
+                //reversed: true,
+                titleFontColor: fontColor,
+                labelFontColor: fontColor,
+                includeZero: false,
+                labelFontSize: labelFontSize,
+                valueFormatString: "0.0",
+                crosshair: {
+                    enabled: true, //disable here
+                    snapToDataPoint: true,
+                    valueFormatString: "##.0"
+                },
+                /* stripLines: [
+                    {
+                        startValue: 2000,
+                        endValue: -100,
+                        color: "rgba(0,0,0,0.1)"
+                    },] */
+                //labelAngle: -45,
+                //interval: 0.5,
+                //includeZero: true
+            }],
+            axisY2: {
+                title: "Chuva Status",
+                titleFontSize: 15,
+                gridColor: GridColor,
+                includeZero: false,
+                titleFontColor: fontColor,
+                labelFontColor: fontColor,
+                labelFontSize: labelFontSize,
+                fontColor: fontColor,
+                valueFormatString: "0",
+                crosshair: {
+                    enabled: true, //disable here
+                    snapToDataPoint: true,
+                    valueFormatString: "##.0"
+                },
+                stripLines: [
+                    {
+                        startValue: 2000,
+                        endValue: -100,
+                        color: bacgroundGraph
+                    },],
+                includeZero: true,
+                //labelAngle: -45,
+                //interval: 0.5,
+            },
+            toolTip: {
+                shared: true
+            },
+            data: [
+                {
+                    type: lineType,
+                    showInLegend: true,
+                    markerType: markerType,
+                    lineThickness: lineThickness,
+                    name: "Pressão (mmHg)",
+                    //lineColor: "rgba(50,150,150,0.3)",
+                    color: "rgb(0,255,0)",
+                    yValueFormatString: "0.00 mmHg",
+                    xValueType: "dateTime",
+                    axisYIndex: 1,
+                    dataPoints: Data_mmHg
+                }, {
+                    type: lineType,
+                    showInLegend: true,
+                    markerType: markerType,
+                    lineThickness: lineThickness,
+                    name: "Umidade (%)",
+                    //lineColor: "rgba(0,0,255,1)",
+                    color: "rgba(0,170,255,1)",
+                    yValueFormatString: "#,##%",
+                    xValueType: "dateTime",
+                    axisYIndex: 0,
+                    dataPoints: DataUmidade
+                },
+                {
+                    type: "area",
+                    lineThickness: lineThickness,
+                    markerType: markerType,
+                    showInLegend: true,
+                    name: "Chuva Status ",
+                    //lineColor: "rgba(255,0,0,1)",
+                    color: "rgba(255,255,255,0.2)",
+                    yValueFormatString: "0",
+                    xValueType: "dateTime",
+                    axisYType: "secondary",
+                    dataPoints: DataChuvaStatus,
+                }]
 
-    });
+        });
     function toggleDataSeries(e) {
         if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
             e.dataSeries.visible = false;
@@ -721,6 +721,7 @@ var PCD = function () {
         DataWindSpeed.length = 0;
         DataCO2.length = 0;
         DataTVOC.length = 0;
+        DataChuvaStatus.length = 0;
 
         let data = json.PCD_data[PCD_NAME];
         ultima_amostra(data);
@@ -767,6 +768,11 @@ var PCD = function () {
             DataTVOC.push({
                 x: datatimeUTC,
                 y: (data[i].tvoc), label: HMS
+
+            });
+            DataChuvaStatus.push({
+                x: datatimeUTC,
+                y: (data[i].chuva_status), label: HMS
 
             });
 
