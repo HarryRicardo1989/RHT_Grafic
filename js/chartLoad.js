@@ -57,7 +57,7 @@ ultima_amostra = function (data) {
     let VelocidadeVento = data[0].wind_speed
     let tvocppm = data[0].tvoc
     let co2ppm = data[0].co2
-    let chuvaStatus = data[0].chuva_status == 1 ? "SIM" : "NAO"
+    let chuvaStatus = data[0].chuva_status == 1 ? "SIM" : "NÃO"
     stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
     stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altímetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
