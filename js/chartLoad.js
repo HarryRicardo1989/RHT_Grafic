@@ -54,7 +54,7 @@ ultima_amostra = function (data) {
     let sea_level_press = (data[0].pressao_nivel_mar / 100);// convert Pa to hPa
     let pressao_mmHg = (data[0].pressao_nivel_mar * Pa_to_mmHg); //convert Pa to mmHg
     let pontoDeOrvalho = data[0].temperatura_orvalho
-    let VelocidadeVento = data[0].wind_speed
+    let VelocidadeVento = data[0].wind_speed * 3.6
     let tvocppm = data[0].tvoc
     let co2ppm = data[0].co2
     let chuvaStatus = data[0].chuva_status == 1 ? "SIM" : "NÃO"
@@ -62,7 +62,7 @@ ultima_amostra = function (data) {
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
     stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altímetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
     stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
-    stringWindSpeed = `Velocidade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}m/s</span>`;
+    stringWindSpeed = `Velocidade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}km/h</span>`;
     stringCO2Tvoc = `CO2: <span class="Verde">${co2ppm} PPM </span> TVOC: <span class="Verde">${tvocppm} PPM</span>`;
     stringChuvaStatus = `Está chovendo?: <span class="Verde">${chuvaStatus}</span>`;
 
@@ -432,7 +432,7 @@ var PCD = function () {
             verticalAlign: "top",  // top, center, bottom
         },
         axisY: {
-            title: "Velocidade do Vento (m/s)",
+            title: "Velocidade do Vento (km/h)",
             titleFontSize: 15,
             gridColor: GridColor,
             includeZero: false,
@@ -464,10 +464,10 @@ var PCD = function () {
             lineThickness: lineThickness,
             markerType: markerType,
             showInLegend: true,
-            name: "Velocidade do Vento (m/s)",
+            name: "Velocidade do Vento (km/h)",
             //lineColor: "rgba(255,0,0,1)",
             color: "rgba(255,0,255,1)",
-            yValueFormatString: "0.0000 m/s",
+            yValueFormatString: "0.0000 km/h",
             xValueType: "dateTime",
             dataPoints: DataWindSpeed
         },]
@@ -758,7 +758,7 @@ var PCD = function () {
             });
             DataWindSpeed.push({
                 x: datatimeUTC,
-                y: (data[i].wind_speed), label: HMS
+                y: (data[i].wind_speed * 3.6), label: HMS
 
             });
             DataCO2.push({
