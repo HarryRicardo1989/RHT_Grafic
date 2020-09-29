@@ -663,6 +663,7 @@ var PCD = function () {
             toolTip: {
                 shared: true
             },
+            axisX: Xaxis,
             data: [
                 {
                     type: lineType,
