@@ -66,23 +66,11 @@ ultima_amostra = function (data) {
     stringCO2Tvoc = `CO2: <span class="Verde">${co2ppm} PPM </span> TVOC: <span class="Verde">${tvocppm} PPM</span>`;
     stringChuvaStatus = `Está chovendo?: <span class="Verde">${chuvaStatus}</span>`;
 
-    let probabilidade = ''
-    if (pressao_mmHg < 760.0 && umidadeAtual > 30) {
-        probabilidade = `<span class="Aqua">"Tempo Nublado"</span>`
-    } else if (pressao_mmHg < 760.0 && umidadeAtual > 15) {
-        probabilidade = `<span class="Aqua">"Nuvens"</span>`
-
-    } else if (pressao_mmHg < 750.0 && umidadeAtual > 60) {
-        probabilidade = `<span class="Azul">"Chuva"</span>`
-    } else {
-        probabilidade = `<span class="Verde">"Não Chover"</span>`
-    }
     const RHTAtual = document.getElementById("RHT");
     const Pressao_nivel_mar = document.getElementById("Pressao");
     const Pressao_Atual = document.getElementById("Pressao1");
     const ponto_orvalhoT = document.getElementById("Dew_point");
     const VelociadeVento = document.getElementById("Wind_speed");
-    const Probabilidade = document.getElementById("Probabilidade");
     const CO2TVOC = document.getElementById("airQuality");
     const statusChuva = document.getElementById("statusChuva");
     RHTAtual.innerHTML = stringRHT;
@@ -92,7 +80,6 @@ ultima_amostra = function (data) {
     VelociadeVento.innerHTML = stringWindSpeed;
     CO2TVOC.innerHTML = stringCO2Tvoc;
     statusChuva.innerHTML = stringChuvaStatus;
-    Probabilidade.innerHTML = `Previsão de ${probabilidade} nas próximas Horas (Ribeirão Preto)`;
 
 
 }
@@ -844,7 +831,7 @@ var PCD = function () {
     tamanhoGrafico = function (horas) {
         tempoHora = parseFloat(horas);
         tempoDia = tempoHora / 24;
-        console.log(tempoDia, tempoHora)
+        //console.log(tempoDia, tempoHora)
 
         document.body.style.cursor = "wait"
         botaoSelect();
