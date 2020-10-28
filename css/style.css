@@ -126,25 +126,6 @@ main .autoajust{
     padding-left: 2vh;
     padding-right: 2vh;
 }
-.botao{
-    font-size: 15px;
-    padding-bottom: 10px;
-    padding-left: 1vh;
-    padding-right: 1vh;
-    color: darkgrey;
-    margin-left: 5vh;
-    border-radius: 7px;
-    width: 85px;
-    height: 30px;
-    text-align: center;
-}
-
-.botao:hover{
-    cursor: pointer;
-    color: black;
-    background-color: #aaaaaa;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
 
 .Verde{
     color: green;
