@@ -806,23 +806,23 @@ var PCD = function () {
 
         if (botao === 'horas') {
             seletor = 'Full data';
-            document.getElementById('botaoAno').style.visibility = "hidden";
-            document.getElementById('botaoMes').style.visibility = "hidden";
+            document.querySelectorAll('.DiaSelect').forEach(e => e.style.visibility = "hidden");
+            document.querySelectorAll('.HorasMedia').forEach(e => e.style.visibility = "hidden");
             document.querySelectorAll('.intraHour').forEach(e => e.style.visibility = "hidden");
             document.querySelectorAll('.intraDay').forEach(e => e.style.visibility = "visible");
 
         }
         else if (botao === 'horasmedia') {
             seletor = 'Media/Hora';
-            document.getElementById('botaoAno').style.visibility = "visible";
-            document.getElementById('botaoMes').style.visibility = "visible";
+            document.querySelectorAll('.DiaSelect').forEach(e => e.style.visibility = "visible");
+            document.querySelectorAll('.HorasMedia').forEach(e => e.style.visibility = "visible");
             document.querySelectorAll('.intraDay').forEach(e => e.style.visibility = "visible");
             document.querySelectorAll('.intraHour').forEach(e => e.style.visibility = "hidden");
 
         } else {
             seletor = 'Media/Dia';
-            document.getElementById('botaoAno').style.visibility = "visible";
-            document.getElementById('botaoMes').style.visibility = "visible";
+            document.querySelectorAll('.DiaSelect').forEach(e => e.style.visibility = "visible");
+            document.querySelectorAll('.HorasMedia').forEach(e => e.style.visibility = "visible");
             document.querySelectorAll('.intraDay').forEach(e => e.style.visibility = "hidden");
             document.querySelectorAll('.intraHour').forEach(e => e.style.visibility = "hidden");
 
@@ -841,9 +841,10 @@ var PCD = function () {
         callUpdate();
     }
 
-    tamanhoGrafico = function (horas, dias) {
-        tempoHora = horas;
-        tempoDia = dias;
+    tamanhoGrafico = function (horas) {
+        tempoHora = parseFloat(horas);
+        tempoDia = tempoHora / 24;
+        console.log(tempoDia, tempoHora)
 
         document.body.style.cursor = "wait"
         botaoSelect();
@@ -855,6 +856,8 @@ var PCD = function () {
         botaoSelect();
 
     }
+
+    botaoSelect()
 
 
 }

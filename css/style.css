@@ -53,6 +53,9 @@ body{
     font-size:5vh;
     padding:.3em
 }
+.first{
+    padding-top: 1.5vh;
+}
 main .autoajust{
     text-align:center;
     grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
@@ -61,12 +64,10 @@ main .autoajust{
 .atual{
     padding-top: 3vh;
 }
-.Explicacao{
-    font-size:10px;
+.BotaoSelet{
+    display:inline-block;
     padding-bottom: 10px;
-    padding-left: 2vh;
-    padding-right: 2vh;
-    color: darkgrey;
+
 }
 .RHT {
     font-size:2.5vh;
@@ -166,8 +167,6 @@ div .graf {
 
 hr {
     border-top: 1px solid #727273;
-    margin-bottom: 1rem;
-    margin-top: 1.2rem;
 }
 footer{
     position:fixed;
