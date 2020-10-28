@@ -54,7 +54,7 @@ body{
     padding:.3em
 }
 .first{
-    padding-top: 1.5vh;
+    margin-top: 2.2vh;
 }
 main .autoajust{
     text-align:center;
@@ -146,9 +146,7 @@ div .graf {
     width: 97.5%;
 }
 
-hr {
-    border-top: 1px solid #727273;
-}
+
 footer{
     position:fixed;
     bottom:0;
