@@ -23,64 +23,70 @@
         </div>
     </header>
     <main>
-        <div class="atual">
-            <hr class="first">
-            <h2 class="botoes">Dados Atuais:</h2>
-            <div class="Selet" id="Selet">
-                <div class="BotaoSelet">
-                    <label for="TempoDeExibicao" class="botoes">Selecione o Tempo:</label>
-                    <select name="TempoDeExibicao" onchange="tamanhoGrafico(this.value)">
-                        <option class="intraDay intraHour" value=0.25>15 Min</option>
-                        <option class="intraDay intraHour" value=0.5>30 Min</option>
-                        <option class="intraDay intraHour" value=1>1 Hora</option>
-                        <option class="intraDay" value=2>2 Horas</option>
-                        <option class="intraDay" value=3>3 Horas</option>
-                        <option class="intraDay" value=6>6 Horas</option>
-                        <option class="intraDay" value=12>12 Horas</option>
-                        <option value=24 selected>24 Horas</option>
-                        <option value=48>48 Horas</option>
-                        <option value=120>5 Dias</option>
-                        <option value=168>7 Dias</option>
-                        <option value=360>15 Dias</option>
-                        <option class="DiaSelect" value=720>1 Mes</option>
-                        <option class="DiaSelect" value=1440>2 Meses</option>
-                        <option class="DiaSelect" value=4320>6 Meses</option>
-                        <option class="DiaSelect HorasMedia" value=8760>1 Ano</option>
-                    </select>
+        <div class="autoajust">
+            <div class="atual">
+                <hr class="first">
+                <h2 class="botoes">Dados Atuais:</h2>
+                <div class="Selet" id="Selet">
+                    <div class="BotaoSelet">
+                        <label for="TempoDeExibicao" class="botoes">Selecione o Tempo:</label>
+                        <select name="TempoDeExibicao" onchange="tamanhoGrafico(this.value)">
+                            <option class="intraDay intraHour" value=0.25>15 Min</option>
+                            <option class="intraDay intraHour" value=0.5>30 Min</option>
+                            <option class="intraDay intraHour" value=1>1 Hora</option>
+                            <option class="intraDay" value=2>2 Horas</option>
+                            <option class="intraDay" value=3>3 Horas</option>
+                            <option class="intraDay" value=6>6 Horas</option>
+                            <option class="intraDay" value=12>12 Horas</option>
+                            <option value=24 selected>24 Horas</option>
+                            <option value=48>48 Horas</option>
+                            <option value=120>5 Dias</option>
+                            <option value=168>7 Dias</option>
+                            <option value=360>15 Dias</option>
+                            <option class="DiaSelect" value=720>1 Mes</option>
+                            <option class="DiaSelect" value=1440>2 Meses</option>
+                            <option class="DiaSelect" value=4320>6 Meses</option>
+                            <option class="DiaSelect HorasMedia" value=8760>1 Ano</option>
+                        </select>
+                    </div>
+                    <div class="BotaoSelet">
+                        <label for="TempoDeExibicao" class="botoes">Selecione o Tipo:</label>
+                        <select name="TempoDeExibicao" onchange="periodoSelect(this.value)">
+                            <option value="horas" selected>Ful-Data</option>
+                            <option value="horasmedia">Media Hora</option>
+                            <option value="dias">Media Dia</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="BotaoSelet">
-                    <label for="TempoDeExibicao" class="botoes">Selecione o Tipo:</label>
-                    <select name="TempoDeExibicao" onchange="periodoSelect(this.value)">
-                        <option value="horas" selected>Ful-Data</option>
-                        <option value="horasmedia">Media Hora</option>
-                        <option value="dias">Media Dia</option>
-                    </select>
+                <div>
+                    <div class="bloco">
+                        <h1 class="RHT" id="RHT"></h1>
+                        <h1 class="Pressao" id="Pressao"></h1>
+                        <h1 class="Pressao1" id="Pressao1"></h1>
+                        <h1 class="Dew_point" id="Dew_point"></h1>
+                        <h1 class="Wind_speed" id="Wind_speed"></h1>
+                        <h1 class="airQuality" id="airQuality"></h1>
+                        <h1 class="airQuality" id="statusChuva"></h1>
+                    </div>
                 </div>
             </div>
-            <h1 class="RHT" id="RHT"></h1>
-            <h1 class="Pressao" id="Pressao"></h1>
-            <h1 class="Pressao1" id="Pressao1"></h1>
-            <h1 class="Dew_point" id="Dew_point"></h1>
-            <h1 class="Wind_speed" id="Wind_speed"></h1>
-            <h1 class="airQuality" id="airQuality"></h1>
-            <h1 class="airQuality" id="statusChuva"></h1>
-        </div>
-        <hr>
-        <h2 class="botoes">Graficos:</h2>
-        <div class="autoajust">
+            <hr>
+            <h2 class="botoes">Graficos:</h2>
+            <div class="autoajust">
 
-            <div class="block">
-                <div class="graf" id="WindSpeed"></div>
-                <hr>
-                <div class="graf" id="RHTrelativo"></div>
-                <hr>
-                <div class="graf" id="Chuva"></div>
-                <hr>
-                <div class="graf" id="Pressure"></div>
-                <hr>
-                <div class="graf" id="DewPoint"></div>
-                <hr>
-                <div class="graf" id="AirQuality"></div>
+                <div class="block">
+                    <div class="graf" id="WindSpeed"></div>
+                    <hr>
+                    <div class="graf" id="RHTrelativo"></div>
+                    <hr>
+                    <div class="graf" id="Chuva"></div>
+                    <hr>
+                    <div class="graf" id="Pressure"></div>
+                    <hr>
+                    <div class="graf" id="DewPoint"></div>
+                    <hr>
+                    <div class="graf" id="AirQuality"></div>
+                </div>
             </div>
         </div>
         <hr>
