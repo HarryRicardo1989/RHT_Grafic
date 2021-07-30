@@ -69,12 +69,27 @@ main .autoajust{
     padding-bottom: 10px;
 
 }
-.RHT {
+.horacoleta{
+    font-size:3vh;
+    padding-right: 1vh;
+    padding-left: 2vh;
+    color: darkgrey;
+    text-align: center;
+    display: block;
+}
+.Temp {
     font-size:2.5vh;
     padding-right: 1vh;
     padding-left: 2vh;
     color: darkgrey;
-    display: inline-block;
+    display: block;
+}
+.Umid {
+    font-size:2.5vh;
+    padding-right: 1vh;
+    padding-left: 2vh;
+    color: darkgrey;
+    display: block;
 }
 .Pressao {
     font-size:2.5vh;

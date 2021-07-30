@@ -45,8 +45,10 @@ const Xaxis = {
 
 
 
-ultima_amostra = function (data) {
+ultima_amostra = function (data, min_max) {
     let ultimaAtualizacao = new Date((data[0].timestamp - (3600 * 3)) * 1000).toISOString().slice(11, 19).replace('T', ' ');
+    let dataAtualizacao = new Date((data[0].timestamp - (3600 * 3)) * 1000).toISOString().slice(0, 10).replace('T', ' ');
+    let dataAtualizacaoBr = `${dataAtualizacao.slice(8, 10)}-${dataAtualizacao.slice(5, 7)}-${dataAtualizacao.slice(0, 4)}`
     let temperaturaAtual = data[0].temperatura_ar;
     let umidadeAtual = data[0].umidade;
     let Altitude = data[0].altitude;
@@ -58,28 +60,46 @@ ultima_amostra = function (data) {
     let tvocppm = data[0].tvoc
     let co2ppm = data[0].co2
     let chuvaStatus = data[0].chuva_status == 1 ? "SIM" : "NÃO"
-    stringRHT = `Hora: <span class="Verde">${ultimaAtualizacao}</span> Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Temperatura:<span class="Verde"> ${temperaturaAtual.toFixed(2)} ºC</span>`;
+    let min_temperatura= min_max[0].min_temperatura.toFixed(3)
+    let max_temperatura= min_max[0].max_temperatura.toFixed(3)
+    let min_umidade= min_max[0].min_umidade.toFixed(3)
+    let max_umidade= min_max[0].max_umidade.toFixed(3)
+    let min_pressao_local = (min_max[0].min_pressao_local / 100).toFixed(3)
+    let max_pressao_local = (min_max[0].max_pressao_local / 100).toFixed(3)
+    let max_wind_speed =( min_max[0].max_wind_speed * 3.6).toFixed(3)
+    stringHora = `Data da Coleta <span class="Verde">${dataAtualizacaoBr}</span> Hora da Coleta: <span class="Verde">${ultimaAtualizacao}</span>`
+    stringTemp = `Temperatura: <span class="Verde">${temperaturaAtual.toFixed(2)} ºC</span> Minima:<span class="Verde"> ${min_temperatura} ºC</span> Maxima:<span class="Verde"> ${max_temperatura} ºC</span>`;
+    stringUmid = `Umidade: <span class="Verde">${umidadeAtual.toFixed(2)} %</span> Minima:<span class="Verde"> ${min_umidade} %</span> Maxima:<span class="Verde"> ${max_umidade} %</span>`;
     stringPressao1 = `Pressão ao Nível do Mar: <span class="Verde">${sea_level_press.toFixed(3)} hPa (${(pressao_mmHg).toFixed(3)} mmHg)</span>`;
-    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Altímetro: <span class="Verde">${Altitude.toFixed(1)}m</span>`;
+    
+    stringPressao2 = `Pressão Aferida: <span class="Verde">${pressao.toFixed(3)} hPa (${(pressao * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span>`;
+    stringPressao3 = `Minima: <span class="Verde">${min_pressao_local} hPa (${(min_pressao_local * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span> Maxima: <span class="Verde">${max_pressao_local} hPa (${(max_pressao_local * Pa_to_mmHg * 100).toFixed(3)} mmHg) </span>`;
+    
     stringDewPoint = `Temperatura de Ponto de Orvalho: <span class="Verde">${pontoDeOrvalho.toFixed(3)}ºC</span>`;
-    stringWindSpeed = `Velocidade do Vento Atual: <span class="Verde">${VelocidadeVento.toFixed(3)}km/h</span>`;
+    stringWindSpeed = `Velocidade do Vento: <span class="Verde">${VelocidadeVento.toFixed(3)}km/h</span> Maxima: <span class="Verde">${max_wind_speed}km/h</span>`;
     stringCO2Tvoc = `CO2: <span class="Verde">${co2ppm} PPM </span> TVOC: <span class="Verde">${tvocppm} PPM</span>`;
-    stringChuvaStatus = `Está chovendo?: <span class="Verde">${chuvaStatus}</span>`;
+    //stringChuvaStatus = `Está chovendo?: <span class="Verde">${chuvaStatus}</span>`;
 
-    const RHTAtual = document.getElementById("RHT");
+    const HoraColeta = document.getElementById("horacoleta");
+    const TempAtual = document.getElementById("Temp");
+    const UmidAtual = document.getElementById("Umid");
     const Pressao_nivel_mar = document.getElementById("Pressao");
     const Pressao_Atual = document.getElementById("Pressao1");
+    const Pressao_minima = document.getElementById("Pressao2");
     const ponto_orvalhoT = document.getElementById("Dew_point");
     const VelociadeVento = document.getElementById("Wind_speed");
     const CO2TVOC = document.getElementById("airQuality");
-    const statusChuva = document.getElementById("statusChuva");
-    RHTAtual.innerHTML = stringRHT;
+    //const statusChuva = document.getElementById("statusChuva");
+    HoraColeta.innerHTML = stringHora;
+    TempAtual.innerHTML = stringTemp;
+    UmidAtual.innerHTML = stringUmid;
     Pressao_nivel_mar.innerHTML = stringPressao1;
     Pressao_Atual.innerHTML = stringPressao2;
+    Pressao_minima.innerHTML = stringPressao3;
     ponto_orvalhoT.innerHTML = stringDewPoint;
     VelociadeVento.innerHTML = stringWindSpeed;
     CO2TVOC.innerHTML = stringCO2Tvoc;
-    statusChuva.innerHTML = stringChuvaStatus;
+    //statusChuva.innerHTML = stringChuvaStatus;
 
 
 }
@@ -712,7 +732,8 @@ var PCD = function () {
         DataChuvaStatus.length = 0;
 
         let data = json.PCD_data[PCD_NAME];
-        ultima_amostra(data);
+        let min_max = json.PCD_data["PCD-001_min_max"];
+        ultima_amostra(data, min_max);
         for (var i = 0; i < data.length; i++) {
             let localtimestamp = (data[i].timestamp - (3600 * 3)) * 1000
             let datatimeUTC = ((localtimestamp) + ((10800) * 1000))
