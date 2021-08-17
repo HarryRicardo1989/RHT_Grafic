@@ -808,7 +808,7 @@ var PCD = function () {
     setInterval(function () {
         callUpdate()
 
-    }, 5000)
+    }, 20000)
 
     botaoSelect = function () {
 
